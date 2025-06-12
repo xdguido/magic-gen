@@ -106,6 +106,13 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
               Gold
             </Label>
           </div>
+           <div className="flex items-center space-x-2">
+            <RadioGroupItem value="sepia" id="sepia" />
+            <Label htmlFor="sepia" className="flex items-center">
+              <div className="w-4 h-4 bg-yellow-900 rounded-full mr-2"></div>
+              Sepia
+            </Label>
+          </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="colorless" id="colorless" />
             <Label htmlFor="colorless" className="flex items-center">

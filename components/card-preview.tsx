@@ -61,6 +61,13 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
       textColor: "text-gray-950",
       opacity: "opacity-30",
     },
+    sepia: {
+      border: "border-yellow-950",
+      tint: "bg-[#f2be63]",
+      titleBg: "bg-[#f2be63]",
+      textColor: "text-gray-950",
+      opacity: "opacity-70",
+    },
     colorless: {
       border: "border-gray-500",
       tint: "bg-gray-400",
@@ -78,7 +85,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
       <div className="bg-transparent p-4">
         <div
           ref={ref}
-          className={`w-[200px] h-[280px] rounded-[12px] overflow-hidden border-6 ${styles.border} shadow-lg ${styles.textColor} relative bg-white`}
+          className={`w-[205px] h-[285px] rounded-[12px] overflow-hidden border-6 ${styles.border} shadow-lg ${styles.textColor} relative bg-white`}
         >
           {/* Texture background with color tint */}
           <div className="absolute inset-0 z-0">
@@ -87,7 +94,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
           </div>
 
           {/* Card Title with texture background */}
-          <div className={`px-2 py-1 border-b border-gray-400 relative z-10 overflow-hidden`}>
+          <div className={`px-2 py-1 relative z-10 overflow-hidden`}>
             {/* Header texture background */}
             <div className="absolute inset-0 z-0">
               <Image src="/images/card-texture.jpg" alt="Card texture" fill className="object-cover" priority />
@@ -97,7 +104,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
           </div>
 
           {/* Card Image - takes up most of the space */}
-          <div className="h-[240px] relative z-10 bg-white bg-opacity-70">
+          <div className="h-[240px] relative z-10 mx-2 bg-white bg-opacity-70">
             <Image src={card.image || "/placeholder.svg"} alt={card.name} fill className="object-cover" priority />
           </div>
         </div>
@@ -111,7 +118,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
       <div className="bg-transparent p-4">
         <div
           ref={ref}
-          className={`w-[300px] h-[420px] rounded-[16px] overflow-hidden border-8 ${styles.border} shadow-lg ${styles.textColor} relative bg-white`}
+          className={`w-[295px] h-[430px] rounded-[16px] overflow-hidden border-8 ${styles.border} shadow-lg ${styles.textColor} relative bg-white`}
         >
           {/* Texture background with color tint */}
           <div className="absolute inset-0 z-0">
@@ -172,7 +179,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
     <div className="bg-transparent p-4">
       <div
         ref={ref}
-        className={`w-[300px] h-[420px] rounded-[16px] overflow-hidden border-8 ${styles.border} shadow-lg ${styles.textColor} relative bg-white`}
+        className={`w-[295px] h-[430px] rounded-[16px] overflow-hidden border-8 ${styles.border} shadow-lg ${styles.textColor} relative bg-white`}
       >
         {/* Texture background with color tint */}
         <div className="absolute inset-0 z-0">
