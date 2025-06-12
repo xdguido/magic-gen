@@ -41,7 +41,7 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="type">Card Type</Label>
+        <Label htmlFor="type">Card Type (Optional)</Label>
         <Input
           id="type"
           value={card.type}
@@ -106,7 +106,7 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
               Gold
             </Label>
           </div>
-           <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2">
             <RadioGroupItem value="sepia" id="sepia" />
             <Label htmlFor="sepia" className="flex items-center">
               <div className="w-4 h-4 bg-yellow-900 rounded-full mr-2"></div>

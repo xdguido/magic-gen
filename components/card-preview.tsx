@@ -41,11 +41,11 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
       opacity: "opacity-20",
     },
     purple: {
-      border: "border-purple-900",
+      border: "border-purple-950",
       tint: "bg-purple-500",
       titleBg: "bg-purple-300",
       textColor: "text-gray-950",
-      opacity: "opacity-20",
+      opacity: "opacity-40",
     },
     green: {
       border: "border-green-900",
@@ -87,24 +87,21 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
           ref={ref}
           className={`w-[205px] h-[285px] rounded-[12px] overflow-hidden border-6 ${styles.border} shadow-lg ${styles.textColor} relative bg-white`}
         >
-          {/* Texture background with color tint */}
+          {/* Single texture background with color tint for entire card */}
           <div className="absolute inset-0 z-0">
             <Image src="/images/card-texture.jpg" alt="Card texture" fill className="object-cover" priority />
             <div className={`absolute inset-0 ${styles.tint} ${styles.opacity} mix-blend-multiply`}></div>
           </div>
 
-          {/* Card Title with texture background */}
-          <div className={`px-2 py-1 relative z-10 overflow-hidden`}>
-            {/* Header texture background */}
-            <div className="absolute inset-0 z-0">
-              <Image src="/images/card-texture.jpg" alt="Card texture" fill className="object-cover" priority />
-              <div className={`absolute inset-0 ${styles.tint} opacity-40 mix-blend-multiply`}></div>
-            </div>
-            <h3 className="font-amarante font-bold text-sm text-center mtg-card-title relative z-10">{card.name}</h3>
+          {/* Card Title with margin */}
+          <div className="mx-3 my-2 relative z-10">
+            <h3 className={`font-amarante font-bold text-sm text-center mtg-card-title bg-white bg-opacity-80 px-2 py-1 rounded-md border-4 ${styles.border}/70`}>
+              {card.name}
+            </h3>
           </div>
 
-          {/* Card Image - takes up most of the space */}
-          <div className="h-[240px] relative z-10 mx-2 bg-white bg-opacity-70">
+          {/* Card Image with margin */}
+          <div className={`h-[220px] relative z-10 mx-3 mb-3 rounded-md border-4 ${styles.border}/70 overflow-hidden`}>
             <Image src={card.image || "/placeholder.svg"} alt={card.name} fill className="object-cover" priority />
           </div>
         </div>
@@ -120,39 +117,35 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
           ref={ref}
           className={`w-[295px] h-[430px] rounded-[16px] overflow-hidden border-8 ${styles.border} shadow-lg ${styles.textColor} relative bg-white`}
         >
-          {/* Texture background with color tint */}
+          {/* Single texture background with color tint for entire card */}
           <div className="absolute inset-0 z-0">
             <Image src="/images/card-texture.jpg" alt="Card texture" fill className="object-cover" priority />
             <div className={`absolute inset-0 ${styles.tint} ${styles.opacity} mix-blend-multiply`}></div>
           </div>
 
-          {/* Card Title with texture background */}
-          <div className={`px-3 py-1 border-b border-gray-400 relative z-10 overflow-hidden`}>
-            {/* Header texture background */}
-            <div className="absolute inset-0 z-0">
-              <Image src="/images/card-texture.jpg" alt="Card texture" fill className="object-cover" priority />
-              <div className={`absolute inset-0 ${styles.tint} opacity-40 mix-blend-multiply`}></div>
-            </div>
-            <h3 className="font-amarante font-bold text-lg mtg-card-title relative z-10">{card.name}</h3>
+          {/* Card Title with margin */}
+          <div className="mx-2 mt-3 mb-2 relative z-10">
+           <h3 className={`font-amarante font-bold text-lg mtg-card-title bg-white bg-opacity-80 px-3 py-1 rounded-md border-4 ${styles.border}/70`}>
+              {card.name}
+            </h3>
           </div>
 
-          {/* Card Type with texture background */}
-          <div className={`px-3 py-1 border-b border-gray-400 text-sm relative z-10 overflow-hidden`}>
-            {/* Header texture background */}
-            <div className="absolute inset-0 z-0">
-              <Image src="/images/card-texture.jpg" alt="Card texture" fill className="object-cover" priority />
-              <div className={`absolute inset-0 ${styles.tint} opacity-40 mix-blend-multiply`}></div>
+          {/* Card Type with margin - only show if type exists */}
+          {card.type && card.type.trim() && (
+            <div className="mx-2 mb-2 relative z-10">
+              <span className="font-amarante mtg-card-type text-sm bg-white bg-opacity-80 px-3 py-1 rounded-md inline-block">
+                {card.type}
+              </span>
             </div>
-            <span className="font-amarante mtg-card-type relative z-10">{card.type}</span>
-          </div>
+          )}
 
-          {/* Smaller Card Image */}
-          <div className="h-[120px] relative border-b border-gray-400 z-10 bg-white bg-opacity-70">
+          {/* Card Image with margin */}
+          <div className={`h-[120px] relative z-10 mx-2 mb-2 rounded-md overflow-hidden border-4 ${styles.border}/70`}>
             <Image src={card.image || "/placeholder.svg"} alt={card.name} fill className="object-cover" priority />
           </div>
 
-          {/* Extended Rules Text Area */}
-          <div className="p-3 text-sm h-[200px] overflow-y-auto relative z-10 bg-white bg-opacity-70">
+          {/* Rules Text with margin */}
+           <div className={`mx-2 mb-2 text-xs space-y-1 overflow-y-hidden relative z-10 bg-white bg-opacity-90 p-3 rounded-md border-4 ${styles.border}/70`}>
             <div className="space-y-1">
               {card.rulesText.split("\n").map((line, i) => (
                 <p key={i} className="font-amarante mtg-card-text">
@@ -163,7 +156,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
 
             {card.flavorText && (
               <div className="mt-4 pt-3 border-t border-gray-300">
-                <p className="font-amarante italic text-gray-600 text-xs leading-relaxed mtg-card-flavor">
+                <p className="font-amarante italic text-gray-600 mtg-card-flavor">
                   {card.flavorText}
                 </p>
               </div>
@@ -181,39 +174,35 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
         ref={ref}
         className={`w-[295px] h-[430px] rounded-[16px] overflow-hidden border-8 ${styles.border} shadow-lg ${styles.textColor} relative bg-white`}
       >
-        {/* Texture background with color tint */}
+        {/* Single texture background with color tint for entire card */}
         <div className="absolute inset-0 z-0">
           <Image src="/images/card-texture.jpg" alt="Card texture" fill className="object-cover" priority />
           <div className={`absolute inset-0 ${styles.tint} ${styles.opacity} mix-blend-multiply`}></div>
         </div>
 
-        {/* Card Title with texture background */}
-        <div className={`px-3 py-1 border-b border-gray-400 relative z-10 overflow-hidden`}>
-          {/* Header texture background */}
-          <div className="absolute inset-0 z-0">
-            <Image src="/images/card-texture.jpg" alt="Card texture" fill className="object-cover" priority />
-            <div className={`absolute inset-0 ${styles.tint} opacity-40 mix-blend-multiply`}></div>
-          </div>
-          <h3 className="font-amarante font-bold text-lg mtg-card-title relative z-10">{card.name}</h3>
+        {/* Card Title with margin */}
+        <div className="mx-2 mt-3 mb-2 relative z-10">
+          <h3 className={`font-amarante font-bold text-lg mtg-card-title bg-white bg-opacity-80 px-3 py-1 rounded-md border-4 ${styles.border}/70`}>
+            {card.name}
+          </h3>
         </div>
 
-        {/* Card Image */}
-        <div className="h-[180px] relative border-b border-gray-400 z-10 bg-white bg-opacity-70">
+        {/* Card Image with margin */}
+        <div className={`h-[180px] relative z-10 mx-2 mb-2 rounded-md border-4 ${styles.border}/70 overflow-hidden`}>
           <Image src={card.image || "/placeholder.svg"} alt={card.name} fill className="object-cover" priority />
         </div>
 
-        {/* Card Type with texture background */}
-        <div className={`px-3 py-1 border-b border-gray-400 text-sm relative z-10 overflow-hidden`}>
-          {/* Header texture background */}
-          <div className="absolute inset-0 z-0">
-            <Image src="/images/card-texture.jpg" alt="Card texture" fill className="object-cover" priority />
-            <div className={`absolute inset-0 ${styles.tint} opacity-40 mix-blend-multiply`}></div>
+        {/* Card Type with margin - only show if type exists */}
+        {card.type && card.type.trim() && (
+          <div className="mx-2 mb-2 relative z-10">
+            <span className="font-amarante mtg-card-type text-sm bg-white bg-opacity-80 px-3 py-1 rounded-md inline-block">
+              {card.type}
+            </span>
           </div>
-          <span className="font-amarante mtg-card-type relative z-10">{card.type}</span>
-        </div>
+        )}
 
-        {/* Rules Text */}
-        <div className="p-3 text-sm space-y-1 overflow-y-hidden relative z-10 bg-white bg-opacity-70">
+        {/* Rules Text with margin */}
+        <div className={`mx-2 mb-2 text-xs space-y-1 overflow-y-hidden relative z-10 bg-white bg-opacity-90 p-3 rounded-md border-4 ${styles.border}/70`}>
           {card.rulesText.split("\n").map((line, i) => (
             <p key={i} className="font-amarante mtg-card-text">
               {line}
@@ -221,7 +210,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
           ))}
 
           {card.flavorText && (
-            <p className="font-amarante italic text-gray-600 border-t border-gray-300 pt-2 mtg-card-flavor">
+            <p className="font-amarante text-xs italic text-gray-600 border-t border-gray-300 pt-2 mtg-card-flavor">
               {card.flavorText}
             </p>
           )}
