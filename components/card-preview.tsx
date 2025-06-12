@@ -62,7 +62,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
       opacity: "opacity-30",
     },
     colorless: {
-      border: "border-stone-600",
+      border: "border-gray-500",
       tint: "bg-gray-400",
       titleBg: "bg-gray-200",
       textColor: "text-gray-950",
