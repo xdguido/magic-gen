@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Inter, Amarante } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "@/components/ui/toaster"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
 const amarante = Amarante({
@@ -24,10 +25,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${amarante.variable} font-sans`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange={false}>
           {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

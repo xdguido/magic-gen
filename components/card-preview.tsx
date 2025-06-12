@@ -85,7 +85,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
       <div className="bg-transparent p-4">
         <div
           ref={ref}
-          className={`w-[205px] h-[285px] rounded-[12px] overflow-hidden border-6 ${styles.border} shadow-lg ${styles.textColor} relative bg-white`}
+          className={`w-[205px] h-[285px] rounded-[12px] overflow-hidden border-6 ${styles.border} shadow-lg ${styles.textColor} relative bg-white dark:bg-white`}
         >
           {/* Single texture background with color tint for entire card */}
           <div className="absolute inset-0 z-0">
@@ -95,7 +95,9 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
 
           {/* Card Title with margin */}
           <div className="mx-3 my-2 relative z-10">
-            <h3 className={`font-amarante font-bold text-sm text-center mtg-card-title bg-white bg-opacity-80 px-2 py-1 rounded-md border-4 ${styles.border}/70`}>
+            <h3
+              className={`font-amarante font-bold text-sm text-center mtg-card-title bg-white bg-opacity-80 px-2 py-1 rounded-md border-4 ${styles.border}/70 dark:text-gray-950`}
+            >
               {card.name}
             </h3>
           </div>
@@ -115,7 +117,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
       <div className="bg-transparent p-4">
         <div
           ref={ref}
-          className={`w-[295px] h-[430px] rounded-[16px] overflow-hidden border-8 ${styles.border} shadow-lg ${styles.textColor} relative bg-white`}
+          className={`w-[295px] h-[430px] rounded-[16px] overflow-hidden border-8 ${styles.border} shadow-lg ${styles.textColor} relative bg-white dark:bg-white`}
         >
           {/* Single texture background with color tint for entire card */}
           <div className="absolute inset-0 z-0">
@@ -125,7 +127,9 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
 
           {/* Card Title with margin */}
           <div className="mx-2 mt-3 mb-2 relative z-10">
-           <h3 className={`font-amarante font-bold text-lg mtg-card-title bg-white bg-opacity-80 px-3 py-1 rounded-md border-4 ${styles.border}/70`}>
+            <h3
+              className={`font-amarante font-bold text-lg mtg-card-title bg-white bg-opacity-80 px-3 py-1 rounded-md border-4 ${styles.border}/70 dark:text-gray-950`}
+            >
               {card.name}
             </h3>
           </div>
@@ -133,7 +137,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
           {/* Card Type with margin - only show if type exists */}
           {card.type && card.type.trim() && (
             <div className="mx-2 mb-2 relative z-10">
-              <span className="font-amarante mtg-card-type text-sm bg-white bg-opacity-80 px-3 py-1 rounded-md inline-block">
+              <span className="font-amarante mtg-card-type text-sm bg-white bg-opacity-80 px-3 py-1 rounded-md inline-block dark:text-gray-950">
                 {card.type}
               </span>
             </div>
@@ -145,10 +149,12 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
           </div>
 
           {/* Rules Text with margin */}
-           <div className={`mx-2 mb-2 text-xs space-y-1 overflow-y-hidden relative z-10 bg-white bg-opacity-90 p-3 rounded-md border-4 ${styles.border}/70`}>
+          <div
+            className={`mx-2 mb-2 text-xs space-y-1 overflow-y-hidden relative z-10 bg-white bg-opacity-90 p-3 rounded-md border-4 ${styles.border}/70`}
+          >
             <div className="space-y-1">
               {card.rulesText.split("\n").map((line, i) => (
-                <p key={i} className="font-amarante mtg-card-text">
+                <p key={i} className="font-amarante mtg-card-text dark:text-gray-950">
                   {line}
                 </p>
               ))}
@@ -156,7 +162,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
 
             {card.flavorText && (
               <div className="mt-4 pt-3 border-t border-gray-300">
-                <p className="font-amarante italic text-gray-600 mtg-card-flavor">
+                <p className="font-amarante italic text-gray-600 mtg-card-flavor dark:text-gray-950">
                   {card.flavorText}
                 </p>
               </div>
@@ -172,7 +178,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
     <div className="bg-transparent p-4">
       <div
         ref={ref}
-        className={`w-[295px] h-[430px] rounded-[16px] overflow-hidden border-8 ${styles.border} shadow-lg ${styles.textColor} relative bg-white`}
+        className={`w-[295px] h-[430px] rounded-[16px] overflow-hidden border-8 ${styles.border} shadow-lg ${styles.textColor} relative bg-white dark:bg-white`}
       >
         {/* Single texture background with color tint for entire card */}
         <div className="absolute inset-0 z-0">
@@ -182,7 +188,9 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
 
         {/* Card Title with margin */}
         <div className="mx-2 mt-3 mb-2 relative z-10">
-          <h3 className={`font-amarante font-bold text-lg mtg-card-title bg-white bg-opacity-80 px-3 py-1 rounded-md border-4 ${styles.border}/70`}>
+          <h3
+            className={`font-amarante font-bold text-lg mtg-card-title bg-white bg-opacity-80 px-3 py-1 rounded-md border-4 ${styles.border}/70 dark:text-gray-950`}
+          >
             {card.name}
           </h3>
         </div>
@@ -195,22 +203,24 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
         {/* Card Type with margin - only show if type exists */}
         {card.type && card.type.trim() && (
           <div className="mx-2 mb-2 relative z-10">
-            <span className="font-amarante mtg-card-type text-sm bg-white bg-opacity-80 px-3 py-1 rounded-md inline-block">
+            <span className="font-amarante mtg-card-type text-sm bg-white bg-opacity-80 px-3 py-1 rounded-md inline-block dark:text-gray-950">
               {card.type}
             </span>
           </div>
         )}
 
         {/* Rules Text with margin */}
-        <div className={`mx-2 mb-2 text-xs space-y-1 overflow-y-hidden relative z-10 bg-white bg-opacity-90 p-3 rounded-md border-4 ${styles.border}/70`}>
+        <div
+          className={`mx-2 mb-2 text-xs space-y-1 overflow-y-hidden relative z-10 bg-white bg-opacity-90 p-3 rounded-md border-4 ${styles.border}/70`}
+        >
           {card.rulesText.split("\n").map((line, i) => (
-            <p key={i} className="font-amarante mtg-card-text">
+            <p key={i} className="font-amarante mtg-card-text dark:text-gray-950">
               {line}
             </p>
           ))}
 
           {card.flavorText && (
-            <p className="font-amarante text-xs italic text-gray-600 border-t border-gray-300 pt-2 mtg-card-flavor">
+            <p className="font-amarante text-xs italic text-gray-600 border-t border-gray-300 pt-2 mtg-card-flavor dark:text-gray-950">
               {card.flavorText}
             </p>
           )}
