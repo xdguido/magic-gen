@@ -40,6 +40,13 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
       textColor: "text-gray-950",
       opacity: "opacity-20",
     },
+    purple: {
+      border: "border-purple-900",
+      tint: "bg-purple-500",
+      titleBg: "bg-purple-300",
+      textColor: "text-gray-950",
+      opacity: "opacity-20",
+    },
     green: {
       border: "border-green-900",
       tint: "bg-green-500",

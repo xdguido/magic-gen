@@ -86,6 +86,13 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
             </Label>
           </div>
           <div className="flex items-center space-x-2">
+            <RadioGroupItem value="purple" id="purple" />
+            <Label htmlFor="purple" className="flex items-center">
+              <div className="w-4 h-4 bg-purple-600 rounded-full mr-2"></div>
+              Purple
+            </Label>
+          </div>
+          <div className="flex items-center space-x-2">
             <RadioGroupItem value="green" id="green" />
             <Label htmlFor="green" className="flex items-center">
               <div className="w-4 h-4 bg-green-600 rounded-full mr-2"></div>
