@@ -96,14 +96,14 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
           {/* Card Title with margin */}
           <div className="mx-3 my-2 relative z-10">
             <h3
-              className={`font-amarante font-bold text-sm text-center mtg-card-title bg-white bg-opacity-80 px-2 py-1 rounded-md border-4 ${styles.border}/70 dark:text-gray-950`}
+              className={`font-amarante font-bold text-sm text-center mtg-card-title bg-white bg-opacity-80 px-2 py-1 rounded-md border-4 ${styles.border} dark:text-gray-950`}
             >
               {card.name}
             </h3>
           </div>
 
           {/* Card Image with margin */}
-          <div className={`h-[220px] relative z-10 mx-3 mb-3 rounded-md border-4 ${styles.border}/70 overflow-hidden`}>
+          <div className={`h-[220px] relative z-10 mx-3 mb-3 rounded-md border-4 ${styles.border} overflow-hidden`}>
             <Image src={card.image || "/placeholder.svg"} alt={card.name} fill className="object-cover" priority />
           </div>
         </div>
