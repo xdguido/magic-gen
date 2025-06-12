@@ -85,7 +85,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
       <div className="bg-transparent p-4">
         <div
           ref={ref}
-          className={`w-[205px] h-[285px] rounded-[14px] overflow-hidden border-4 ${styles.border} shadow-lg ${styles.textColor} relative bg-white dark:bg-white`}
+          className={`w-[205px] h-[285px] rounded-[14px] overflow-hidden border-8 ${styles.border} shadow-lg ${styles.textColor} relative bg-white dark:bg-white`}
         >
           {/* Single texture background with color tint for entire card */}
           <div className="absolute inset-0 z-0">
@@ -103,7 +103,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
           </div>
 
           {/* Card Image with margin */}
-          <div className={`h-[210px] relative z-10 mx-3 mb-3 rounded-md border-4 ${styles.border} border-opacity-70 overflow-hidden`}>
+          <div className={`h-[205px] relative z-10 mx-3 mb-3 rounded-md bg-white bg-opacity-80 border-4 ${styles.border} border-opacity-70 overflow-hidden`}>
             <Image src={card.image || "/placeholder.svg"} alt={card.name} fill className="object-cover" priority />
           </div>
         </div>
@@ -135,7 +135,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
           </div>
 
           {/* Card Image with margin */}
-          <div className={`h-[120px] relative z-10 mx-2 mb-2 rounded-md overflow-hidden border-4 ${styles.border}/70`}>
+          <div className={`h-[120px] relative z-10 mx-2 mb-2 rounded-md overflow-hidden border-4 ${styles.border} border-opacity-70 bg-white bg-opacity-80`}>
             <Image src={card.image || "/placeholder.svg"} alt={card.name} fill className="object-cover" priority />
           </div>
 
@@ -150,7 +150,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
 
           {/* Rules Text with margin */}
           <div
-            className={`mx-2 mb-2 text-xs space-y-1 overflow-y-hidden relative z-10 bg-white bg-opacity-90 p-3 rounded-md border-4 ${styles.border} border-opacity-70`}
+            className={`mx-2 mb-2 text-xs space-y-1 overflow-y-hidden relative z-10 bg-white bg-opacity-80 p-3 rounded-md border-4 ${styles.border} border-opacity-70`}
           >
             <div className="space-y-1">
               {card.rulesText.split("\n").map((line, i) => (
@@ -196,7 +196,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
         </div>
 
         {/* Card Image with margin */}
-        <div className={`h-[180px] relative z-10 mx-2 mb-2 rounded-md border-4 ${styles.border} border-opacity-70 overflow-hidden`}>
+        <div className={`h-[180px] relative z-10 mx-2 mb-2 rounded-md border-4 ${styles.border} border-opacity-70 overflow-hidden bg-white bg-opacity-80`}>
           <Image src={card.image || "/placeholder.svg"} alt={card.name} fill className="object-cover" priority />
         </div>
 
@@ -211,7 +211,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
 
         {/* Rules Text with margin */}
         <div
-          className={`mx-2 mb-2 text-xs space-y-1 overflow-y-hidden relative z-10 bg-white bg-opacity-90 p-3 rounded-md border-4 ${styles.border} border-opacity-70`}
+          className={`mx-2 mb-2 text-xs space-y-1 overflow-y-hidden relative z-10 bg-white bg-opacity-80 p-3 rounded-md border-4 ${styles.border} border-opacity-70`}
         >
           {card.rulesText.split("\n").map((line, i) => (
             <p key={i} className="font-amarante mtg-card-text dark:text-gray-950">
