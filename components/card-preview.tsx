@@ -203,7 +203,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
               {/* Single texture background with color tint for entire card */}
               <div className="absolute inset-0 z-0">
                 <Image
-                  src="/images/card-texture.png"
+                  src="/images/chernobil2.png"
                   alt="Card texture"
                   fill
                   className="object-cover"
@@ -292,7 +292,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             {/* Single texture background with color tint for entire card */}
             <div className="absolute inset-0 z-0">
               <Image
-                src="/images/card-texture.png"
+                src="/images/chernobil2.png"
                 alt="Card texture"
                 fill
                 className="object-cover"
