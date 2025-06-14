@@ -219,10 +219,10 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                     __html: parseMarkdown(card.rulesText),
                   }}
                 />
-                <div className="border-t-2 border-gray-300 pt-1 mt-1"></div>
+                <div className="border-t-2 border-gray-400 pt-1 mt-1"></div>
                 {card.flavorText && (
                   <div
-                    className={`${fontStyle} text-xs z-20 italic text-gray-500 `}
+                    className={`${fontStyle} text-xs z-20 italic text-gray-700`}
                   >
                     {card.flavorText}
                   </div>
@@ -309,10 +309,10 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                   __html: parseMarkdown(card.rulesText),
                 }}
               />
-              <div className="border-t-2 border-gray-300 pt-1 mt-1"></div>
+              <div className="border-t-2 border-gray-400 pt-1 mt-1"></div>
               {card.flavorText && (
                 <div
-                  className={`${fontStyle} text-xs z-20 italic text-gray-500`}
+                  className={`${fontStyle} text-xs z-20 italic text-gray-700`}
                 >
                   {card.flavorText}
                 </div>
