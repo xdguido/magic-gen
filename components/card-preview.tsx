@@ -40,22 +40,22 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
         opacity: 'opacity-70',
       },
       blue: {
-        border: 'border-blue-200',
+        border: 'border-sky-900',
         tint: 'bg-sky-600',
         textColor: 'text-gray-950',
         opacity: 'opacity-60',
       },
       black: {
         border: 'border-stone-900',
-        tint: 'bg-gray-800',
+        tint: 'bg-stone-800',
         textColor: 'text-gray-950',
-        opacity: 'opacity-30',
+        opacity: 'opacity-40',
       },
       red: {
-        border: 'border-red-900',
-        tint: 'bg-red-600',
+        border: 'border-red-950',
+        tint: 'bg-red-800',
         textColor: 'text-gray-950',
-        opacity: 'opacity-60',
+        opacity: 'opacity-80',
       },
       purple: {
         border: 'border-purple-950',
@@ -70,16 +70,16 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
         opacity: 'opacity-50',
       },
       gold: {
-        border: 'border-yellow-200',
+        border: 'border-yellow-800',
         tint: 'bg-yellow-400',
         textColor: 'text-gray-950',
-        opacity: 'opacity-40',
+        opacity: 'opacity-60',
       },
       sepia: {
         border: 'border-yellow-900',
         tint: 'bg-[#f2be63]',
         textColor: 'text-gray-950',
-        opacity: 'opacity-70',
+        opacity: 'opacity-80',
       },
       colorless: {
         border: 'border-gray-500',
