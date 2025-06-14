@@ -114,7 +114,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
 
             {/* Card Image with margin */}
             <div
-              className={`relative z-10 mx-3 flex-1 mb-3 rounded bg-white bg-opacity-80 border-4 ${styles.border}  overflow-hidden`}
+              className={`relative z-10 mx-3 flex-1 mb-4 rounded bg-white bg-opacity-80 border-4 ${styles.border}  overflow-hidden`}
             >
               <Image
                 src={card.image || '/placeholder.svg'}
@@ -124,6 +124,16 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                 priority
               />
             </div>
+            {/* Card Type with margin - only show if type exists */}
+            {card.type && card.type.trim() && (
+              <div className="absolute bottom-0 right-0 z-10">
+                <span
+                  className={`${fontStyle} text-[8px] px-3 py-0 inline-block`}
+                >
+                  {card.type}
+                </span>
+              </div>
+            )}
           </div>
         </div>
       );
@@ -172,16 +182,6 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                   className="object-cover"
                   priority
                 />
-                {/* Card Type with margin - only show if type exists */}
-                {card.type && card.type.trim() && (
-                  <div className="absolute bottom-0 w-full left-0 z-10">
-                    <span
-                      className={`${fontStyle} w-full text-xs bg-white bg-opacity-70 px-3 py-0.5 inline-block`}
-                    >
-                      {card.type}
-                    </span>
-                  </div>
-                )}
               </div>
 
               {/* Rules Text with margin */}
@@ -209,6 +209,16 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                     className={`${fontStyle} text-xs z-20 italic text-gray-500 `}
                   >
                     {card.flavorText}
+                  </div>
+                )}
+                {/* Card Type with margin - only show if type exists */}
+                {card.type && card.type.trim() && (
+                  <div className="absolute bottom-0 right-0 z-10">
+                    <span
+                      className={`${fontStyle} text-[8px] px-3 py-0 inline-block`}
+                    >
+                      {card.type}
+                    </span>
                   </div>
                 )}
               </div>
@@ -261,16 +271,6 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                 className="object-cover"
                 priority
               />
-              {/* Card Type with margin - only show if type exists */}
-              {card.type && card.type.trim() && (
-                <div className="absolute bottom-0 w-full left-0 z-10">
-                  <span
-                    className={`${fontStyle} w-full text-xs bg-white bg-opacity-70 px-3 py-0.5 inline-block`}
-                  >
-                    {card.type}
-                  </span>
-                </div>
-              )}
             </div>
 
             {/* Rules Text with margin */}
@@ -298,6 +298,16 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                   className={`${fontStyle} text-xs z-20 italic text-gray-500`}
                 >
                   {card.flavorText}
+                </div>
+              )}
+              {/* Card Type with margin - only show if type exists */}
+              {card.type && card.type.trim() && (
+                <div className="absolute bottom-0 right-0 z-10">
+                  <span
+                    className={`${fontStyle} text-[8px] px-3 py-0 inline-block`}
+                  >
+                    {card.type}
+                  </span>
                 </div>
               )}
             </div>
