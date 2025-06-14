@@ -77,7 +77,9 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
     const styles = colorStyles[card.color] || colorStyles.colorless;
 
     const fontStyle =
-      card.font === 'fontarda' ? 'font-fontarda' : 'font-amarante';
+      card.font === 'fontarda'
+        ? 'font-fontarda tracking-tight'
+        : 'font-amarante';
 
     // Utility layout - compact card with only name and image
     if (card.layout === 'utility') {
