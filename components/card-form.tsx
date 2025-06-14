@@ -1,32 +1,39 @@
-"use client"
+'use client';
 
-import type React from "react"
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
-import { useState } from "react"
-import type { CardData } from "./card-generator"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Upload } from "lucide-react"
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Upload } from 'lucide-react';
+import type React from 'react';
+import { useState } from 'react';
+import type { CardData } from './card-generator';
 
 interface CardFormProps {
-  card: CardData
-  onChange: (field: keyof CardData, value: string) => void
-  onImageUpload: (imageUrl: string) => void
+  card: CardData;
+  onChange: (field: keyof CardData, value: string) => void;
+  onImageUpload: (imageUrl: string) => void;
 }
 
 export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
-  const [imageFile, setImageFile] = useState<File | null>(null)
+  const [imageFile, setImageFile] = useState<File | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
+    const file = e.target.files?.[0];
     if (file) {
-      setImageFile(file)
-      const imageUrl = URL.createObjectURL(file)
-      onImageUpload(imageUrl)
+      setImageFile(file);
+      const imageUrl = URL.createObjectURL(file);
+      onImageUpload(imageUrl);
     }
-  }
+  };
 
   return (
     <div className="space-y-6">
@@ -35,7 +42,7 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
         <Input
           id="name"
           value={card.name}
-          onChange={(e) => onChange("name", e.target.value)}
+          onChange={(e) => onChange('name', e.target.value)}
           placeholder="Enter card name"
         />
       </div>
@@ -45,7 +52,7 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
         <Input
           id="type"
           value={card.type}
-          onChange={(e) => onChange("type", e.target.value)}
+          onChange={(e) => onChange('type', e.target.value)}
           placeholder="e.g. Creature — Elf, Instant, Sorcery"
         />
       </div>
@@ -54,7 +61,7 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
         <Label>Card Color</Label>
         <RadioGroup
           value={card.color}
-          onValueChange={(value) => onChange("color", value)}
+          onValueChange={(value) => onChange('color', value)}
           className="flex flex-wrap gap-4"
         >
           <div className="flex items-center space-x-2">
@@ -127,7 +134,9 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
         <Label>Card Layout</Label>
         <RadioGroup
           value={card.layout}
-          onValueChange={(value) => onChange("layout", value as "standard" | "text-heavy" | "utility")}
+          onValueChange={(value) =>
+            onChange('layout', value as 'standard' | 'text-heavy' | 'utility')
+          }
           className="flex flex-col gap-2"
         >
           <div className="flex items-center space-x-2">
@@ -144,9 +153,11 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
           </div>
         </RadioGroup>
         <p className="text-sm text-muted-foreground">
-          {card.layout === "standard" && "Large image with standard text space"}
-          {card.layout === "text-heavy" && "Smaller image with more space for rules text"}
-          {card.layout === "utility" && "Compact card with only name and image - perfect for tokens"}
+          {card.layout === 'standard' && 'Large image with standard text space'}
+          {card.layout === 'text-heavy' &&
+            'Smaller image with more space for rules text'}
+          {card.layout === 'utility' &&
+            'Compact card with only name and image - perfect for tokens'}
         </p>
       </div>
 
@@ -155,7 +166,7 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
         <Textarea
           id="rulesText"
           value={card.rulesText}
-          onChange={(e) => onChange("rulesText", e.target.value)}
+          onChange={(e) => onChange('rulesText', e.target.value)}
           placeholder="Enter card rules text"
           rows={4}
         />
@@ -166,7 +177,7 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
         <Textarea
           id="flavorText"
           value={card.flavorText}
-          onChange={(e) => onChange("flavorText", e.target.value)}
+          onChange={(e) => onChange('flavorText', e.target.value)}
           placeholder="Enter flavor text"
           rows={2}
         />
@@ -181,12 +192,36 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
           >
             <div className="flex flex-col items-center space-y-2">
               <Upload className="h-6 w-6" />
-              <span className="text-sm text-muted-foreground">{imageFile ? imageFile.name : "Upload image"}</span>
+              <span className="text-sm text-muted-foreground">
+                {imageFile ? imageFile.name : 'Upload image'}
+              </span>
             </div>
-            <Input id="image-upload" type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
+            <Input
+              id="image-upload"
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+              className="hidden"
+            />
           </Label>
         </div>
       </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="font">Font Style</Label>
+        <Select
+          value={card.font}
+          onValueChange={(value) => onChange('font', value)}
+        >
+          <SelectTrigger>
+            <SelectValue placeholder="Select font" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="default">Default</SelectItem>
+            <SelectItem value="fontarda">Fontarda</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
     </div>
-  )
+  );
 }

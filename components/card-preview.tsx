@@ -76,6 +76,9 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
 
     const styles = colorStyles[card.color] || colorStyles.colorless;
 
+    const fontStyle =
+      card.font === 'fontarda' ? 'font-fontarda' : 'font-amarante';
+
     // Utility layout - compact card with only name and image
     if (card.layout === 'utility') {
       return (
@@ -101,7 +104,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             {/* Card Title with margin */}
             <div className="mx-3 mt-3 relative z-10">
               <h3
-                className={`font-amarante font-bold text-sm text-center mtg-card-title bg-white bg-opacity-80 px-2 py-0.5 rounded border-4 ${styles.border} `}
+                className={`${fontStyle} font-bold text-sm text-center bg-white bg-opacity-80 px-2 py-0.5 rounded border-4 ${styles.border} `}
               >
                 {card.name}
               </h3>
@@ -150,7 +153,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
               {/* Card Title with margin */}
               <div className="mx-2 mt-2 relative z-10">
                 <h3
-                  className={`font-amarante font-bold text-md mtg-card-title bg-white bg-opacity-80 px-3 py-0.5 rounded border-4 ${styles.border}`}
+                  className={`${fontStyle} font-bold text-md bg-white bg-opacity-80 px-3 py-0.5 rounded border-4 ${styles.border}`}
                 >
                   {card.name}
                 </h3>
@@ -171,7 +174,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                 {card.type && card.type.trim() && (
                   <div className="absolute bottom-0 w-full left-0 z-10">
                     <span
-                      className={`font-amarante w-full mtg-card-type text-xs bg-white bg-opacity-70 px-3 py-0.5 inline-block`}
+                      className={`${fontStyle} w-full text-xs bg-white bg-opacity-70 px-3 py-0.5 inline-block`}
                     >
                       {card.type}
                     </span>
@@ -194,13 +197,15 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                   />
                 </div>
                 {card.rulesText.split('\n').map((line, i) => (
-                  <div key={i} className="font-amarante z-20 mtg-card-text ">
+                  <div key={i} className={`${fontStyle} z-20`}>
                     {line}
                   </div>
                 ))}
                 <div className="border-t-2 border-gray-300 pt-1 mt-1"></div>
                 {card.flavorText && (
-                  <div className="font-amarante text-xs z-20 italic text-gray-500  mtg-card-flavor ">
+                  <div
+                    className={`${fontStyle} text-xs z-20 italic text-gray-500 `}
+                  >
                     {card.flavorText}
                   </div>
                 )}
@@ -212,6 +217,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
     }
 
     // Standard layout (original)
+
     return (
       <div>
         <div className="bg-stone-950">
@@ -236,7 +242,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             {/* Card Title with margin */}
             <div className="mx-2 mt-2 relative z-10">
               <h3
-                className={`font-amarante font-bold text-md mtg-card-title bg-white bg-opacity-80 px-3 py-0.5 rounded border-4 ${styles.border}`}
+                className={`${fontStyle} font-bold text-md bg-white bg-opacity-80 px-3 py-0.5 rounded border-4 ${styles.border}`}
               >
                 {card.name}
               </h3>
@@ -257,7 +263,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
               {card.type && card.type.trim() && (
                 <div className="absolute bottom-0 w-full left-0 z-10">
                   <span
-                    className={`font-amarante w-full mtg-card-type text-xs bg-white bg-opacity-70 px-3 py-0.5 inline-block`}
+                    className={`${fontStyle} w-full text-xs bg-white bg-opacity-70 px-3 py-0.5 inline-block`}
                   >
                     {card.type}
                   </span>
@@ -280,13 +286,15 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                 />
               </div>
               {card.rulesText.split('\n').map((line, i) => (
-                <div key={i} className="font-amarante z-20 mtg-card-text ">
+                <div key={i} className={`${fontStyle} z-20`}>
                   {line}
                 </div>
               ))}
               <div className="border-t-2 border-gray-300 pt-1 mt-1"></div>
               {card.flavorText && (
-                <div className="font-amarante text-xs z-20 italic text-gray-500  mtg-card-flavor ">
+                <div
+                  className={`${fontStyle} text-xs z-20 italic text-gray-500`}
+                >
                   {card.flavorText}
                 </div>
               )}
