@@ -150,7 +150,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
               {/* Card Title with margin */}
               <div className="mx-2 mt-2 relative z-10">
                 <h3
-                  className={`font-amarante shadow-md font-bold text-lg mtg-card-title bg-white bg-opacity-80 px-3 py-0.5 rounded border-4 ${styles.border} dark:text-gray-950`}
+                  className={`font-amarante font-bold text-md mtg-card-title bg-white bg-opacity-80 px-3 py-0.5 rounded border-4 ${styles.border} dark:text-gray-950`}
                 >
                   {card.name}
                 </h3>
@@ -236,7 +236,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             {/* Card Title with margin */}
             <div className="mx-2 mt-2 relative z-10">
               <h3
-                className={`font-amarante shadow-md font-bold text-lg mtg-card-title bg-white bg-opacity-80 px-3 py-0.5 rounded border-4 ${styles.border} dark:text-gray-950`}
+                className={`font-amarante font-bold text-md mtg-card-title bg-white bg-opacity-80 px-3 py-0.5 rounded border-4 ${styles.border} dark:text-gray-950`}
               >
                 {card.name}
               </h3>
