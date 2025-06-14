@@ -96,6 +96,43 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
         ? 'font-fontarda tracking-tight'
         : 'font-amarante';
 
+    if (card.layout === 'back') {
+      // Back layout - just show the back image
+      return (
+        <div>
+          <div className="bg-stone-950">
+            <div
+              ref={ref}
+              className={`w-[295px] h-[430px] rounded-[21px] flex flex-col gap-2 overflow-hidden border-[15px] border-stone-950 shadow-lg ${styles.textColor} relative bg-white dark:bg-white`}
+            >
+              {/* Single texture background with color tint for entire card */}
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src="/images/card-texture.png"
+                  alt="Card texture"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+                <div
+                  className={`absolute inset-0 bg-[#611a1a] mix-blend-multiply`}
+                ></div>
+                <div className="absolute inset-0 z-0">
+                  <Image
+                    src="/images/dnd-logo.jpg"
+                    alt="Card watermark"
+                    fill
+                    className="object-cover opacity-[12%]"
+                    priority
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     // Utility layout - compact card with only name and image
     if (card.layout === 'utility') {
       return (
@@ -107,7 +144,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             {/* Single texture background with color tint for entire card */}
             <div className="absolute inset-0 z-0">
               <Image
-                src="/images/card-texture.jpg"
+                src="/images/card-texture.png"
                 alt="Card texture"
                 fill
                 className="object-cover"
@@ -166,7 +203,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
               {/* Single texture background with color tint for entire card */}
               <div className="absolute inset-0 z-0">
                 <Image
-                  src="/images/card-texture.jpg"
+                  src="/images/card-texture.png"
                   alt="Card texture"
                   fill
                   className="object-cover"
@@ -245,7 +282,6 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
     }
 
     // Standard layout (original)
-
     return (
       <div>
         <div className="bg-stone-950">
@@ -256,7 +292,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             {/* Single texture background with color tint for entire card */}
             <div className="absolute inset-0 z-0">
               <Image
-                src="/images/card-texture.jpg"
+                src="/images/card-texture.png"
                 alt="Card texture"
                 fill
                 className="object-cover"
