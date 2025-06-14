@@ -249,18 +249,17 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                 className="object-cover"
                 priority
               />
+              {/* Card Type with margin - only show if type exists */}
+              {card.type && card.type.trim() && (
+                <div className="absolute bottom-0 w-full left-0 z-10">
+                  <span
+                    className={`font-amarante w-full rounded-tr mtg-card-type text-xs bg-white bg-opacity-70 px-3 py-0.5 inline-block`}
+                  >
+                    {card.type}
+                  </span>
+                </div>
+              )}
             </div>
-
-            {/* Card Type with margin - only show if type exists */}
-            {card.type && card.type.trim() && (
-              <div className="mx-2 relative z-10">
-                <span
-                  className={`font-amarante border-4 ${styles.border} mtg-card-type text-sm bg-white bg-opacity-80 px-3 py-0.5 rounded inline-block dark:text-gray-950`}
-                >
-                  {card.type}
-                </span>
-              </div>
-            )}
 
             {/* Rules Text with margin */}
 
@@ -277,16 +276,13 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                 />
               </div>
               {card.rulesText.split('\n').map((line, i) => (
-                <div
-                  key={i}
-                  className="font-amarante mb-0.5 z-20 mtg-card-text dark:text-gray-950"
-                >
+                <div key={i} className="font-amarante z-20 mtg-card-text ">
                   {line}
                 </div>
               ))}
-              <div className="border-t border-gray-300 pt-1 mt-1"></div>
+              <div className="border-t-2 border-gray-300 pt-1 mt-1"></div>
               {card.flavorText && (
-                <div className="font-amarante mb-0.5 text-xs z-20 italic text-gray-600  mtg-card-flavor dark:text-gray-950">
+                <div className="font-amarante text-xs z-20 italic text-gray-500  mtg-card-flavor ">
                   {card.flavorText}
                 </div>
               )}
