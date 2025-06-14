@@ -100,9 +100,8 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
       // Back layout - just show the back image
       return (
         <div>
-          <div className="bg-stone-950">
+          <div ref={ref} className="bg-stone-950">
             <div
-              ref={ref}
               className={`w-[295px] h-[430px] rounded-[21px] flex flex-col gap-2 overflow-hidden border-[15px] border-stone-950 shadow-lg ${styles.textColor} relative `}
             >
               {/* Single texture background with color tint for entire card */}
@@ -136,9 +135,8 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
     // Utility layout - compact card with only name and image
     if (card.layout === 'utility') {
       return (
-        <div className="bg-stone-950">
+        <div ref={ref} className="bg-stone-950">
           <div
-            ref={ref}
             className={`w-[205px] flex flex-col h-[285px] gap-2 rounded-[14px] overflow-hidden border-8 border-stone-950 shadow-lg ${styles.textColor} relative `}
           >
             {/* Single texture background with color tint for entire card */}
@@ -195,9 +193,8 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
     if (card.layout === 'text-heavy') {
       return (
         <div>
-          <div className="bg-stone-950">
+          <div ref={ref} className="bg-stone-950">
             <div
-              ref={ref}
               className={`w-[295px] h-[430px] rounded-[16px] flex flex-col gap-2 overflow-hidden border-[12px] border-stone-950 shadow-lg ${styles.textColor} relative`}
             >
               {/* Single texture background with color tint for entire card */}
@@ -284,9 +281,8 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
     // Standard layout (original)
     return (
       <div>
-        <div className="bg-stone-950">
+        <div ref={ref} className="bg-stone-950">
           <div
-            ref={ref}
             className={`w-[295px] h-[430px] rounded-[16px] flex flex-col gap-2 overflow-hidden border-[12px] border-stone-950 shadow-lg ${styles.textColor} relative `}
           >
             {/* Single texture background with color tint for entire card */}
