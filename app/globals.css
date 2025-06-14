@@ -126,6 +126,36 @@
 }
 
 @font-face {
-  font-family: 'Fontarda';
-  src: url('/fontarda.ttf') format('truetype');
+  font-family: "Fontarda";
+  src: url("/fontarda.ttf") format("truetype");
+}
+
+/* Markdown styles for card text */
+.card-text strong {
+  font-weight: bold;
+}
+
+.card-text em {
+  font-style: italic;
+}
+
+.card-text del {
+  text-decoration: line-through;
+}
+
+.card-text code {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 0.1em 0.2em;
+  border-radius: 0.2em;
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+.card-text p {
+  margin: 0;
+  line-height: 1.2;
+}
+
+.card-text br {
+  line-height: 1.4;
 }
