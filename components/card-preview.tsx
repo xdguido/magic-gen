@@ -144,7 +144,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             {/* Single texture background with color tint for entire card */}
             <div className="absolute inset-0 z-0">
               <Image
-                src="/images/card-texture.jpg"
+                src="/images/card-texture.png"
                 alt="Card texture"
                 fill
                 className="object-cover"
@@ -203,7 +203,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
               {/* Single texture background with color tint for entire card */}
               <div className="absolute inset-0 z-0">
                 <Image
-                  src="/images/card-texture.jpg"
+                  src="/images/card-texture.png"
                   alt="Card texture"
                   fill
                   className="object-cover"
@@ -292,7 +292,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             {/* Single texture background with color tint for entire card */}
             <div className="absolute inset-0 z-0">
               <Image
-                src="/images/card-texture.jpg"
+                src="/images/card-texture.png"
                 alt="Card texture"
                 fill
                 className="object-cover"
@@ -306,7 +306,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             {/* Card Title with margin */}
             <div className="mx-2 mt-2 relative z-10">
               <h3
-                className={`${fontStyle} font-bold text-md bg-white bg-opacity-80 px-3 py-0.5 rounded border-4 ${styles.border}`}
+                className={`${fontStyle} font-bold text-md bg-white bg-opacity-10 px-3 py-0.5 rounded border-4 ${styles.border}`}
               >
                 {card.name}
               </h3>
