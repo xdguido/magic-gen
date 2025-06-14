@@ -79,10 +79,10 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
     // Utility layout - compact card with only name and image
     if (card.layout === 'utility') {
       return (
-        <div className="bg-transparent p-4">
+        <div className="bg-stone-950">
           <div
             ref={ref}
-            className={`w-[205px] h-[285px] rounded-[14px] overflow-hidden border-8 ${styles.border} shadow-lg ${styles.textColor} relative bg-white dark:bg-white`}
+            className={`w-[205px] flex flex-col h-[285px] gap-2 rounded-[14px] overflow-hidden border-8 border-stone-950 shadow-lg ${styles.textColor} relative bg-white dark:bg-white`}
           >
             {/* Single texture background with color tint for entire card */}
             <div className="absolute inset-0 z-0">
@@ -99,9 +99,9 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             </div>
 
             {/* Card Title with margin */}
-            <div className="mx-3 my-2 relative z-10">
+            <div className="mx-3 mt-3 relative z-10">
               <h3
-                className={`font-amarante font-bold text-sm text-center mtg-card-title bg-white bg-opacity-80 px-2 py-1 rounded-md border-4 ${styles.border}  dark:text-gray-950`}
+                className={`font-amarante font-bold text-sm text-center mtg-card-title bg-white bg-opacity-80 px-2 py-0.5 rounded border-4 ${styles.border} `}
               >
                 {card.name}
               </h3>
@@ -109,7 +109,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
 
             {/* Card Image with margin */}
             <div
-              className={`h-[205px] relative z-10 mx-3 mb-3 rounded-md bg-white bg-opacity-80 border-4 ${styles.border}  overflow-hidden`}
+              className={`relative z-10 mx-3 flex-1 mb-3 rounded bg-white bg-opacity-80 border-4 ${styles.border}  overflow-hidden`}
             >
               <Image
                 src={card.image || '/placeholder.svg'}
@@ -150,7 +150,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
               {/* Card Title with margin */}
               <div className="mx-2 mt-2 relative z-10">
                 <h3
-                  className={`font-amarante font-bold text-md mtg-card-title bg-white bg-opacity-80 px-3 py-0.5 rounded border-4 ${styles.border} dark:text-gray-950`}
+                  className={`font-amarante font-bold text-md mtg-card-title bg-white bg-opacity-80 px-3 py-0.5 rounded border-4 ${styles.border}`}
                 >
                   {card.name}
                 </h3>
@@ -236,7 +236,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             {/* Card Title with margin */}
             <div className="mx-2 mt-2 relative z-10">
               <h3
-                className={`font-amarante font-bold text-md mtg-card-title bg-white bg-opacity-80 px-3 py-0.5 rounded border-4 ${styles.border} dark:text-gray-950`}
+                className={`font-amarante font-bold text-md mtg-card-title bg-white bg-opacity-80 px-3 py-0.5 rounded border-4 ${styles.border}`}
               >
                 {card.name}
               </h3>
