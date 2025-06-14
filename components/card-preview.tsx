@@ -108,14 +108,14 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
               {/* Single texture background with color tint for entire card */}
               <div className="absolute inset-0 z-0">
                 <Image
-                  src="/images/card-texture.png"
+                  src="/images/chernobil2.png"
                   alt="Card texture"
                   fill
                   className="object-cover"
                   priority
                 />
                 <div
-                  className={`absolute inset-0 bg-[#611a1a] mix-blend-multiply`}
+                  className={`absolute inset-0 bg-[#731f1f] mix-blend-multiply`}
                 ></div>
                 <div className="absolute inset-0 z-0">
                   <Image
