@@ -7,18 +7,25 @@ interface CardPreviewProps {
   card: CardData
 }
 
-const parseMarkdown = (text: string) => {
+const parseMarkdown = (text: string): string => {
   // Configure marked for inline parsing
   const renderer = new marked.Renderer()
   renderer.paragraph = (text) => text // Remove paragraph wrapping
 
-  const parsed = marked(text, {
-    renderer,
-    breaks: true,
-    gfm: true,
-  })
+  try {
+    const parsed = marked.parse(text, {
+      renderer,
+      breaks: true,
+      gfm: true,
+    })
 
-  return parsed
+    // Ensure we return a string
+    return typeof parsed === "string" ? parsed : String(parsed)
+  } catch (error) {
+    console.error("Markdown parsing error:", error)
+    // Fallback to plain text with line breaks
+    return text.replace(/\n/g, "<br>")
+  }
 }
 
 export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card }, ref) => {
