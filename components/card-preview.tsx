@@ -156,7 +156,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             {/* Card Title with margin */}
             <div className="mx-3 mt-3 relative z-10">
               <h3
-                className={`${fontStyle} font-bold text-sm text-center bg-white bg-opacity-60 px-2 py-0.5 rounded border-4 ${styles.border} `}
+                className={`${fontStyle} font-bold text-sm text-center box-content bg-white bg-opacity-60 px-2 py-0.5 rounded border-4 ${styles.border} `}
               >
                 {card.name}
               </h3>
@@ -164,7 +164,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
 
             {/* Card Image with margin */}
             <div
-              className={`relative z-10 mx-3 flex-1 mb-4 rounded border-4 ${styles.border}  overflow-hidden`}
+              className={`relative z-10 mx-3 flex-1 mb-4 box-content rounded border-4 ${styles.border}  overflow-hidden`}
             >
               <Image
                 src={card.image || '/placeholder.svg'}
@@ -214,7 +214,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
               {/* Card Title with margin */}
               <div className="mx-2 mt-2 relative z-10">
                 <h3
-                  className={`${fontStyle} font-bold text-md bg-white bg-opacity-60 px-3 py-0.5 rounded border-4 ${styles.border}`}
+                  className={`${fontStyle} font-bold text-md bg-white box-content bg-opacity-60 px-3 py-0.5 rounded border-4 ${styles.border}`}
                 >
                   {card.name}
                 </h3>
@@ -222,7 +222,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
 
               {/* Card Image with margin */}
               <div
-                className={`h-[140px] relative z-10 mx-2 rounded border-4 ${styles.border}  overflow-hidden`}
+                className={`h-[140px] relative box-content z-10 mx-2 rounded border-4 ${styles.border}  overflow-hidden`}
               >
                 <Image
                   src={card.image || '/placeholder.svg'}
@@ -238,7 +238,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
               <div
                 className={`mx-2 mb-2 text-xs flex-1 overflow-y-hidden relative z-10 bg-white bg-opacity-80 p-3 rounded border-4 ${styles.border} `}
               >
-                <div className="absolute m-2 inset-0 z-0">
+                <div className="absolute m-2 inset-0">
                   <Image
                     src="/images/dnd-logo.jpg"
                     alt="Card watermark"
@@ -253,7 +253,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                     __html: parseMarkdown(card.rulesText),
                   }}
                 />
-                <div className="border-t-2 border-gray-400 pt-1 mt-1"></div>
+                <div className="pt-1 mt-1"></div>
                 {card.flavorText && (
                   <div
                     className={`${fontStyle} text-xs z-20 italic text-gray-700`}
@@ -302,7 +302,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             {/* Card Title with margin */}
             <div className="mx-2 mt-2 relative z-10">
               <h3
-                className={`${fontStyle} font-bold text-md bg-white bg-opacity-60 px-3 py-0.5 rounded border-4 ${styles.border}`}
+                className={`${fontStyle} font-bold text-md bg-white box-content bg-opacity-60 px-3 py-0.5 rounded border-4 ${styles.border}`}
               >
                 {card.name}
               </h3>
@@ -310,23 +310,22 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
 
             {/* Card Image with margin */}
             <div
-              className={`h-[180px] relative z-10 mx-2 rounded border-4 ${styles.border}  overflow-hidden `}
+              className={`h-[180px] relative z-10 mx-2 rounded border-4 box-content ${styles.border} overflow-hidden`}
             >
               <Image
                 src={card.image || '/placeholder.svg'}
                 alt={card.name}
                 fill
                 className="object-cover"
-                priority
               />
             </div>
 
             {/* Rules Text with margin */}
 
             <div
-              className={`mx-2 mb-2 text-xs flex-1 overflow-y-hidden relative z-10 bg-white bg-opacity-80 p-3 rounded border-4 ${styles.border} `}
+              className={`mx-2 mb-2 text-xs flex-1 overflow-y-hidden box-content relative z-10 bg-white bg-opacity-80 p-3 rounded border-4 ${styles.border} `}
             >
-              <div className="absolute m-2 inset-0 z-0">
+              <div className="absolute m-2 inset-0">
                 <Image
                   src="/images/dnd-logo.jpg"
                   alt="Card watermark"
@@ -341,7 +340,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                   __html: parseMarkdown(card.rulesText),
                 }}
               />
-              <div className="border-t-2 border-gray-400 pt-1 mt-1"></div>
+              <div className="pt-1 mt-1"></div>
               {card.flavorText && (
                 <div
                   className={`${fontStyle} text-xs z-20 italic text-gray-700`}
@@ -351,7 +350,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
               )}
               {/* Card Type with margin - only show if type exists */}
               {card.type && card.type.trim() && (
-                <div className="absolute bottom-0 right-0 z-10">
+                <div className="absolute bottom-0 right-0 z-20">
                   <span
                     className={`${fontStyle} text-[8px] px-3 py-0 inline-block`}
                   >
