@@ -125,6 +125,21 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
       </div>
 
       <div className="space-y-2">
+        <Label htmlFor="texture">Card Texture</Label>
+        <Select value={card.texture} onValueChange={(value) => onChange("texture", value)}>
+          <SelectTrigger>
+            <SelectValue placeholder="Select texture" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="default">Default Parchment</SelectItem>
+            <SelectItem value="chernobyl">Chernobyl Wasteland</SelectItem>
+            <SelectItem value="lava">Lava Rock</SelectItem>
+            <SelectItem value="metal">Metal Plate</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="space-y-2">
         <Label>Card Layout</Label>
         <RadioGroup
           value={card.layout}
@@ -208,20 +223,7 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
           </SelectContent>
         </Select>
       </div>
-      <div className="space-y-2">
-        <Label htmlFor="texture">Card Texture</Label>
-        <Select value={card.texture} onValueChange={(value) => onChange("texture", value)}>
-          <SelectTrigger>
-            <SelectValue placeholder="Select texture" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="default">Default Parchment</SelectItem>
-            <SelectItem value="chernobyl">Chernobyl Wasteland</SelectItem>
-            <SelectItem value="lava">Lava Rock</SelectItem>
-            <SelectItem value="metal">Metal Plate</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
+     
     </div>
   )
 }
