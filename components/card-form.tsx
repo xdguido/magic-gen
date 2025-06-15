@@ -218,12 +218,12 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
             <SelectValue placeholder="Select font" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="default">Default</SelectItem>
+            <SelectItem value="default">Default (Amarante)</SelectItem>
             <SelectItem value="fontarda">Fontarda</SelectItem>
+            <SelectItem value="eb-garamond">EB Garamond</SelectItem>
           </SelectContent>
         </Select>
       </div>
-     
     </div>
   )
 }

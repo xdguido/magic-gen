@@ -325,7 +325,12 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
   const texture = textureStyles[card.texture] || textureStyles.default
   const styles = getColorStyles(card.texture, card.color)
 
-  const fontStyle = card.font === "fontarda" ? "font-fontarda tracking-tight" : "font-amarante"
+  const fontStyle =
+    card.font === "fontarda"
+      ? "font-fontarda tracking-tight"
+      : card.font === "eb-garamond"
+        ? "font-eb-garamond"
+        : "font-amarante"
 
   if (card.layout === "back") {
     // Back layout - just show the back image

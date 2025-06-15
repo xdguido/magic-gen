@@ -19,7 +19,7 @@ export type CardData = {
   flavorText: string
   image: string
   layout: "standard" | "text-heavy" | "utility" | "back"
-  font: "default" | "fontarda"
+  font: "default" | "fontarda" | "eb-garamond"
   texture: "default" | "chernobyl" | "lava" | "metal"
   id?: string
   createdAt?: string
