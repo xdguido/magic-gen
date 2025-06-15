@@ -146,7 +146,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
         },
         red: {
           border: "border-red-800",
-          tint: "bg-red-700",
+          tint: "bg-[#731f1f]",
           textColor: "text-gray-950",
           opacity: "opacity-50",
           titleBg: "bg-red-200 bg-opacity-90",
@@ -344,7 +344,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(({ card 
                 className="object-cover"
                 priority
               />
-              <div className={`absolute inset-0 bg-[#731f1f] mix-blend-multiply`}></div>
+              <div className={`absolute inset-0 ${styles.tint} mix-blend-multiply`}></div>
               {texture.watermark && (
                 <div className="absolute inset-0 z-0">
                   <Image
