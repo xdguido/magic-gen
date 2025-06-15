@@ -102,7 +102,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
         <div>
           <div ref={ref} className="bg-stone-950">
             <div
-              className={`w-[295px] h-[430px] rounded-[21px] flex flex-col gap-2 overflow-hidden border-[15px] border-stone-950 shadow-lg ${styles.textColor} relative `}
+              className={`w-[271px] h-[406px] rounded-[21px] flex flex-col gap-2 overflow-hidden border-[15px] border-stone-950 shadow-lg ${styles.textColor} relative `}
             >
               {/* Single texture background with color tint for entire card */}
               <div className="absolute inset-0 z-0">
@@ -195,7 +195,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
         <div>
           <div ref={ref} className="bg-stone-950">
             <div
-              className={`w-[295px] h-[430px] rounded-[16px] flex flex-col gap-2 overflow-hidden border-[12px] border-stone-950 shadow-lg ${styles.textColor} relative`}
+              className={`w-[271px] h-[406px] rounded-[16px] flex flex-col gap-2 overflow-hidden border-[12px] border-stone-950 shadow-lg ${styles.textColor} relative`}
             >
               {/* Single texture background with color tint for entire card */}
               <div className="absolute inset-0 z-0">
@@ -283,7 +283,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
       <div>
         <div ref={ref} className="bg-stone-950">
           <div
-            className={`w-[295px] h-[430px] rounded-[16px] flex flex-col gap-2 overflow-hidden border-[12px] border-stone-950 shadow-lg ${styles.textColor} relative `}
+            className={`w-[271px] h-[406px] box-content rounded-[16px] flex flex-col gap-2 overflow-hidden border-[12px] border-stone-950 shadow-lg ${styles.textColor} relative `}
           >
             {/* Single texture background with color tint for entire card */}
             <div className="absolute inset-0 z-0">
