@@ -5,6 +5,7 @@ import {
   Download,
   Edit,
   GalleryThumbnailsIcon as Gallery,
+  PlusCircle,
   Save,
 } from 'lucide-react';
 import { useRef, useState } from 'react';
@@ -31,7 +32,7 @@ export type CardData = {
 
 const defaultCard: CardData = {
   name: 'Mystic Elemental',
-  type: 'Creature — Elemental',
+  type: '',
   color: 'blue',
   rulesText:
     '**Flying**\nWhen this creature enters the battlefield, *draw a card*.',
@@ -199,6 +200,9 @@ export function CardGenerator() {
               </Button>
               <Button onClick={exportCard} className="flex-1">
                 <Download className="mr-2 h-4 w-4" /> Export as Image
+              </Button>
+              <Button onClick={createNewCard} className="flex-1">
+                <PlusCircle className="mr-2 h-4 w-4" /> New Card
               </Button>
             </div>
           </div>
