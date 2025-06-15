@@ -201,7 +201,11 @@ export function CardGenerator() {
               <Button onClick={exportCard} className="flex-1">
                 <Download className="mr-2 h-4 w-4" /> Export as Image
               </Button>
-              <Button onClick={createNewCard} className="flex-1">
+              <Button
+                variant={'secondary'}
+                onClick={createNewCard}
+                className="flex-1"
+              >
                 <PlusCircle className="mr-2 h-4 w-4" /> New Card
               </Button>
             </div>
