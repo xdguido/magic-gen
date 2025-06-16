@@ -41,6 +41,10 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
         src: '/images/rock.png', // Using default for now, can be replaced
         watermark: '/images/dnd-logo.jpg',
       },
+      oxido: {
+        src: '/images/oxido1.jpeg', // Using default for now, can be replaced
+        watermark: '/images/dnd-logo.jpg',
+      },
     };
 
     // Color mapping for card frames - different styles per texture
@@ -254,6 +258,71 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
           },
         },
         rock: {
+          white: {
+            border: 'border-stone-200',
+            tint: 'bg-stone-50',
+            textColor: 'text-gray-950',
+            opacity: 'opacity-70',
+            titleBg: 'bg-white bg-opacity-60',
+          },
+          blue: {
+            border: 'border-sky-900',
+            tint: 'bg-sky-600',
+            textColor: 'text-gray-950',
+            opacity: 'opacity-60',
+            titleBg: 'bg-blue-100 bg-opacity-80',
+          },
+          black: {
+            border: 'border-stone-900',
+            tint: 'bg-stone-800',
+            textColor: 'text-gray-950',
+            opacity: 'opacity-40',
+            titleBg: 'bg-gray-200 bg-opacity-90',
+          },
+          red: {
+            border: 'border-red-950',
+            tint: 'bg-red-800',
+            textColor: 'text-gray-950',
+            opacity: 'opacity-80',
+            titleBg: 'bg-red-100 bg-opacity-80',
+          },
+          purple: {
+            border: 'border-purple-950',
+            tint: 'bg-purple-500',
+            textColor: 'text-gray-950',
+            opacity: 'opacity-50',
+            titleBg: 'bg-purple-100 bg-opacity-80',
+          },
+          green: {
+            border: 'border-green-800',
+            tint: 'bg-green-500',
+            textColor: 'text-gray-950',
+            opacity: 'opacity-50',
+            titleBg: 'bg-green-100 bg-opacity-80',
+          },
+          gold: {
+            border: 'border-yellow-800',
+            tint: 'bg-yellow-400',
+            textColor: 'text-gray-950',
+            opacity: 'opacity-60',
+            titleBg: 'bg-yellow-100 bg-opacity-80',
+          },
+          sepia: {
+            border: 'border-yellow-900',
+            tint: 'bg-[#f2be63]',
+            textColor: 'text-gray-950',
+            opacity: 'opacity-80',
+            titleBg: 'bg-amber-100 bg-opacity-80',
+          },
+          colorless: {
+            border: 'border-gray-500',
+            tint: 'bg-gray-400',
+            textColor: 'text-gray-950',
+            opacity: 'opacity-10',
+            titleBg: 'bg-white bg-opacity-60',
+          },
+        },
+        oxido: {
           white: {
             border: 'border-stone-200',
             tint: 'bg-stone-50',
