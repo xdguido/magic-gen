@@ -147,7 +147,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             tint: 'bg-stone-800',
             textColor: 'text-gray-950',
             opacity: 'opacity-60',
-            titleBg: 'bg-gray-800 bg-opacity-90 text-gray-100',
+            titleBg: 'bg-zinc-400 bg-opacity-90',
           },
           red: {
             border: 'border-red-800',
