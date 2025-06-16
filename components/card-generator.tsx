@@ -37,12 +37,11 @@ const defaultCard: CardData = {
   color: 'blue',
   rulesText:
     '**Flying**\nWhen this creature enters the battlefield, *draw a card*.',
-  flavorText:
-    'It dances between realms, leaving whispers of arcane knowledge in its wake.',
+  flavorText: '',
   image: '/placeholder.svg?height=400&width=400',
   layout: 'standard',
   font: 'eb-garamond',
-  texture: 'default',
+  texture: 'rock',
 };
 
 export function CardGenerator() {
