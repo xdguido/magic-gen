@@ -10,6 +10,8 @@ import { Upload } from "lucide-react"
 import type React from "react"
 import { useState, useCallback } from "react"
 import type { CardData } from "./card-generator"
+import { useImageStorage } from "@/hooks/use-image-storage"
+import { useToast } from "@/hooks/use-toast"
 
 interface CardFormProps {
   card: CardData
@@ -20,25 +22,53 @@ interface CardFormProps {
 export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
   const [imageFile, setImageFile] = useState<File | null>(null)
   const [isDragOver, setIsDragOver] = useState(false)
+  const [isUploading, setIsUploading] = useState(false)
+  const { saveImage, isInitialized } = useImageStorage()
+  const { toast } = useToast()
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file && file.type.startsWith("image/")) {
-      setImageFile(file)
+      await processFile(file)
+    }
+  }
+
+  const processFile = async (file: File) => {
+    setIsUploading(true)
+    setImageFile(file)
+
+    try {
+      if (isInitialized) {
+        // Save to IndexedDB and get the IndexedDB URL
+        const indexedDBUrl = await saveImage(file)
+        onImageUpload(indexedDBUrl)
+      } else {
+        // Fallback to blob URL if IndexedDB is not ready
+        const imageUrl = URL.createObjectURL(file)
+        onImageUpload(imageUrl)
+      }
+    } catch (error) {
+      console.error("Error saving image:", error)
+      toast({
+        title: "Image Upload Error",
+        description: "Failed to save image. Using temporary preview.",
+        variant: "destructive",
+      })
+      // Fallback to blob URL
       const imageUrl = URL.createObjectURL(file)
       onImageUpload(imageUrl)
+    } finally {
+      setIsUploading(false)
     }
   }
 
   const handleFile = useCallback(
-    (file: File) => {
+    async (file: File) => {
       if (file && file.type.startsWith("image/")) {
-        setImageFile(file)
-        const imageUrl = URL.createObjectURL(file)
-        onImageUpload(imageUrl)
+        await processFile(file)
       }
     },
-    [onImageUpload],
+    [isInitialized, saveImage, onImageUpload],
   )
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
@@ -54,7 +84,7 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
   }, [])
 
   const handleDrop = useCallback(
-    (e: React.DragEvent) => {
+    async (e: React.DragEvent) => {
       e.preventDefault()
       e.stopPropagation()
       setIsDragOver(false)
@@ -63,7 +93,7 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
       const imageFile = files.find((file) => file.type.startsWith("image/"))
 
       if (imageFile) {
-        handleFile(imageFile)
+        await handleFile(imageFile)
       }
     },
     [handleFile],
@@ -243,21 +273,36 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
             htmlFor="image-upload"
             className={`cursor-pointer flex items-center justify-center border-2 border-dashed rounded-lg p-6 w-full transition-all duration-200 ${
               isDragOver ? "border-blue-500 bg-blue-50 dark:bg-blue-950/20" : "border-gray-300 hover:border-gray-400"
-            }`}
+            } ${isUploading ? "opacity-50 cursor-not-allowed" : ""}`}
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
           >
             <div className="flex flex-col items-center space-y-2">
-              <Upload className={`h-8 w-8 ${isDragOver ? "text-blue-500" : "text-gray-400"}`} />
+              <Upload
+                className={`h-8 w-8 ${isDragOver ? "text-blue-500" : "text-gray-400"} ${isUploading ? "animate-pulse" : ""}`}
+              />
               <div className="text-center">
                 <span className={`text-sm font-medium ${isDragOver ? "text-blue-600" : "text-gray-700"}`}>
-                  {imageFile ? imageFile.name : isDragOver ? "Drop image here" : "Click to upload or drag & drop"}
+                  {isUploading
+                    ? "Saving image..."
+                    : imageFile
+                      ? imageFile.name
+                      : isDragOver
+                        ? "Drop image here"
+                        : "Click to upload or drag & drop"}
                 </span>
                 <p className="text-xs text-muted-foreground mt-1">PNG, JPG, GIF up to 10MB</p>
               </div>
             </div>
-            <Input id="image-upload" type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
+            <Input
+              id="image-upload"
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+              className="hidden"
+              disabled={isUploading}
+            />
           </Label>
         </div>
       </div>
