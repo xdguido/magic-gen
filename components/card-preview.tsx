@@ -37,8 +37,8 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
         src: '/images/lava.png',
         watermark: '/images/dnd-logo.jpg',
       },
-      metal: {
-        src: '/images/card-texture.png', // Using default for now, can be replaced
+      rock: {
+        src: '/images/rock.png', // Using default for now, can be replaced
         watermark: '/images/dnd-logo.jpg',
       },
     };
@@ -126,28 +126,28 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
         chernobyl: {
           white: {
             border: 'border-gray-400',
-            tint: 'bg-gray-300',
+            tint: 'bg-gray-400',
             textColor: 'text-gray-950',
             opacity: 'opacity-30',
             titleBg: 'bg-gray-100 bg-opacity-90',
           },
           blue: {
-            border: 'border-cyan-700',
-            tint: 'bg-cyan-500',
+            border: 'border-sky-700',
+            tint: 'bg-sky-800',
             textColor: 'text-gray-950',
             opacity: 'opacity-40',
-            titleBg: 'bg-cyan-100 bg-opacity-90',
+            titleBg: 'bg-sky-100 bg-opacity-90',
           },
           black: {
             border: 'border-gray-900',
-            tint: 'bg-gray-900',
+            tint: 'bg-stone-800',
             textColor: 'text-gray-100',
             opacity: 'opacity-60',
             titleBg: 'bg-gray-800 bg-opacity-90 text-gray-100',
           },
           red: {
             border: 'border-red-800',
-            tint: 'bg-[#731f1f]',
+            tint: 'bg-[#8a1f1f]',
             textColor: 'text-gray-950',
             opacity: 'opacity-50',
             titleBg: 'bg-red-200 bg-opacity-90',
@@ -168,21 +168,21 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
           },
           gold: {
             border: 'border-yellow-700',
-            tint: 'bg-yellow-500',
+            tint: 'bg-yellow-600',
             textColor: 'text-gray-950',
-            opacity: 'opacity-50',
+            opacity: 'opacity-60',
             titleBg: 'bg-yellow-200 bg-opacity-90',
           },
           sepia: {
             border: 'border-amber-800',
-            tint: 'bg-amber-600',
+            tint: 'bg-amber-800',
             textColor: 'text-gray-950',
             opacity: 'opacity-60',
             titleBg: 'bg-amber-200 bg-opacity-90',
           },
           colorless: {
             border: 'border-gray-600',
-            tint: 'bg-gray-500',
+            tint: 'bg-gray-600',
             textColor: 'text-gray-950',
             opacity: 'opacity-20',
             titleBg: 'bg-gray-200 bg-opacity-90',
@@ -253,69 +253,69 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             titleBg: 'bg-stone-100 bg-opacity-90',
           },
         },
-        metal: {
+        rock: {
           white: {
-            border: 'border-slate-300',
-            tint: 'bg-slate-200',
+            border: 'border-stone-200',
+            tint: 'bg-stone-50',
             textColor: 'text-gray-950',
-            opacity: 'opacity-50',
-            titleBg: 'bg-slate-100 bg-opacity-90',
+            opacity: 'opacity-70',
+            titleBg: 'bg-white bg-opacity-60',
           },
           blue: {
-            border: 'border-blue-700',
-            tint: 'bg-blue-500',
+            border: 'border-sky-900',
+            tint: 'bg-sky-600',
             textColor: 'text-gray-950',
-            opacity: 'opacity-40',
-            titleBg: 'bg-blue-100 bg-opacity-90',
+            opacity: 'opacity-60',
+            titleBg: 'bg-blue-100 bg-opacity-80',
           },
           black: {
-            border: 'border-slate-800',
-            tint: 'bg-slate-700',
-            textColor: 'text-slate-100',
-            opacity: 'opacity-60',
-            titleBg: 'bg-slate-800 bg-opacity-90 text-slate-100',
+            border: 'border-stone-900',
+            tint: 'bg-stone-800',
+            textColor: 'text-gray-950',
+            opacity: 'opacity-40',
+            titleBg: 'bg-gray-200 bg-opacity-90',
           },
           red: {
-            border: 'border-red-700',
-            tint: 'bg-red-600',
+            border: 'border-red-950',
+            tint: 'bg-red-800',
             textColor: 'text-gray-950',
-            opacity: 'opacity-50',
-            titleBg: 'bg-red-100 bg-opacity-90',
+            opacity: 'opacity-80',
+            titleBg: 'bg-red-100 bg-opacity-80',
           },
           purple: {
-            border: 'border-purple-700',
+            border: 'border-purple-950',
             tint: 'bg-purple-500',
             textColor: 'text-gray-950',
-            opacity: 'opacity-40',
-            titleBg: 'bg-purple-100 bg-opacity-90',
+            opacity: 'opacity-50',
+            titleBg: 'bg-purple-100 bg-opacity-80',
           },
           green: {
-            border: 'border-green-700',
+            border: 'border-green-800',
             tint: 'bg-green-500',
             textColor: 'text-gray-950',
-            opacity: 'opacity-40',
-            titleBg: 'bg-green-100 bg-opacity-90',
+            opacity: 'opacity-50',
+            titleBg: 'bg-green-100 bg-opacity-80',
           },
           gold: {
-            border: 'border-yellow-600',
+            border: 'border-yellow-800',
             tint: 'bg-yellow-400',
             textColor: 'text-gray-950',
-            opacity: 'opacity-50',
-            titleBg: 'bg-yellow-100 bg-opacity-90',
+            opacity: 'opacity-60',
+            titleBg: 'bg-yellow-100 bg-opacity-80',
           },
           sepia: {
-            border: 'border-amber-700',
-            tint: 'bg-amber-500',
+            border: 'border-yellow-900',
+            tint: 'bg-[#f2be63]',
             textColor: 'text-gray-950',
-            opacity: 'opacity-60',
-            titleBg: 'bg-amber-100 bg-opacity-90',
+            opacity: 'opacity-80',
+            titleBg: 'bg-amber-100 bg-opacity-80',
           },
           colorless: {
-            border: 'border-slate-500',
-            tint: 'bg-slate-400',
+            border: 'border-gray-500',
+            tint: 'bg-gray-400',
             textColor: 'text-gray-950',
-            opacity: 'opacity-30',
-            titleBg: 'bg-slate-100 bg-opacity-90',
+            opacity: 'opacity-10',
+            titleBg: 'bg-white bg-opacity-60',
           },
         },
       };
@@ -360,7 +360,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                 {texture.watermark && (
                   <div className="absolute inset-0 z-0">
                     <Image
-                      src={texture.watermark || '/placeholder.svg'}
+                      src={'/images/dnd-logo-inverted.jpg'}
                       alt="Card watermark"
                       fill
                       className="object-cover opacity-[12%]"

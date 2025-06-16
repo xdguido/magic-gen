@@ -143,7 +143,7 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
             <SelectItem value="default">Default Parchment</SelectItem>
             <SelectItem value="chernobyl">Chernobyl Wasteland</SelectItem>
             <SelectItem value="lava">Lava Rock</SelectItem>
-            <SelectItem value="metal">Metal Plate</SelectItem>
+            <SelectItem value="rock">Rock</SelectItem>
           </SelectContent>
         </Select>
       </div>

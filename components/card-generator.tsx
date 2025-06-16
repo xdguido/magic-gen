@@ -26,7 +26,7 @@ export type CardData = {
   image: string;
   layout: 'standard' | 'text-heavy' | 'utility' | 'back';
   font: 'amarante' | 'eb-garamond';
-  texture: 'default' | 'chernobyl' | 'lava' | 'metal';
+  texture: 'default' | 'chernobyl' | 'lava' | 'rock';
   id?: string;
   createdAt?: string;
 };
