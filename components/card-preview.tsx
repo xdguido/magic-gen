@@ -68,7 +68,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             tint: 'bg-stone-50',
             textColor: 'text-gray-950',
             opacity: 'opacity-70',
-            titleBg: 'bg-white bg-opacity-60',
+            titleBg: 'bg-white bg-opacity-80',
           },
           blue: {
             border: 'border-sky-900',
@@ -124,7 +124,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             tint: 'bg-gray-400',
             textColor: 'text-gray-950',
             opacity: 'opacity-10',
-            titleBg: 'bg-white bg-opacity-60',
+            titleBg: 'bg-white bg-opacity-80',
           },
         },
         chernobyl: {
@@ -259,18 +259,18 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
         },
         rock: {
           white: {
-            border: 'border-stone-200',
-            tint: 'bg-stone-50',
+            border: 'border-zinc-300',
+            tint: 'bg-white',
             textColor: 'text-gray-950',
             opacity: 'opacity-70',
-            titleBg: 'bg-white bg-opacity-60',
+            titleBg: 'bg-white bg-opacity-80',
           },
           blue: {
             border: 'border-sky-900',
             tint: 'bg-sky-600',
             textColor: 'text-gray-950',
             opacity: 'opacity-60',
-            titleBg: 'bg-blue-100 bg-opacity-80',
+            titleBg: 'bg-sky-100 bg-opacity-80',
           },
           black: {
             border: 'border-stone-900',
@@ -301,11 +301,11 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             titleBg: 'bg-green-100 bg-opacity-80',
           },
           gold: {
-            border: 'border-yellow-800',
+            border: 'border-yellow-500',
             tint: 'bg-yellow-400',
             textColor: 'text-gray-950',
-            opacity: 'opacity-60',
-            titleBg: 'bg-yellow-100 bg-opacity-80',
+            opacity: 'opacity-80',
+            titleBg: 'bg-yellow-200 bg-opacity-80',
           },
           sepia: {
             border: 'border-yellow-900',
@@ -319,7 +319,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             tint: 'bg-gray-400',
             textColor: 'text-gray-950',
             opacity: 'opacity-10',
-            titleBg: 'bg-white bg-opacity-60',
+            titleBg: 'bg-white bg-opacity-80',
           },
         },
         oxido: {
@@ -328,7 +328,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             tint: 'bg-stone-50',
             textColor: 'text-gray-950',
             opacity: 'opacity-70',
-            titleBg: 'bg-white bg-opacity-60',
+            titleBg: 'bg-white bg-opacity-80',
           },
           blue: {
             border: 'border-sky-900',
@@ -384,7 +384,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
             tint: 'bg-gray-400',
             textColor: 'text-gray-950',
             opacity: 'opacity-10',
-            titleBg: 'bg-white bg-opacity-60',
+            titleBg: 'bg-white bg-opacity-80',
           },
         },
       };
