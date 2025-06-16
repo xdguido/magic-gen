@@ -1,39 +1,73 @@
-'use client';
+"use client"
 
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Upload } from 'lucide-react';
-import type React from 'react';
-import { useState } from 'react';
-import type { CardData } from './card-generator';
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+import { Upload } from "lucide-react"
+import type React from "react"
+import { useState, useCallback } from "react"
+import type { CardData } from "./card-generator"
 
 interface CardFormProps {
-  card: CardData;
-  onChange: (field: keyof CardData, value: string) => void;
-  onImageUpload: (imageUrl: string) => void;
+  card: CardData
+  onChange: (field: keyof CardData, value: string) => void
+  onImageUpload: (imageUrl: string) => void
 }
 
 export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
-  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null)
+  const [isDragOver, setIsDragOver] = useState(false)
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setImageFile(file);
-      const imageUrl = URL.createObjectURL(file);
-      onImageUpload(imageUrl);
+    const file = e.target.files?.[0]
+    if (file && file.type.startsWith("image/")) {
+      setImageFile(file)
+      const imageUrl = URL.createObjectURL(file)
+      onImageUpload(imageUrl)
     }
-  };
+  }
+
+  const handleFile = useCallback(
+    (file: File) => {
+      if (file && file.type.startsWith("image/")) {
+        setImageFile(file)
+        const imageUrl = URL.createObjectURL(file)
+        onImageUpload(imageUrl)
+      }
+    },
+    [onImageUpload],
+  )
+
+  const handleDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setIsDragOver(true)
+  }, [])
+
+  const handleDragLeave = useCallback((e: React.DragEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setIsDragOver(false)
+  }, [])
+
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault()
+      e.stopPropagation()
+      setIsDragOver(false)
+
+      const files = Array.from(e.dataTransfer.files)
+      const imageFile = files.find((file) => file.type.startsWith("image/"))
+
+      if (imageFile) {
+        handleFile(imageFile)
+      }
+    },
+    [handleFile],
+  )
 
   return (
     <div className="space-y-6">
@@ -42,7 +76,7 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
         <Input
           id="name"
           value={card.name}
-          onChange={(e) => onChange('name', e.target.value)}
+          onChange={(e) => onChange("name", e.target.value)}
           placeholder="Enter card name"
         />
       </div>
@@ -52,7 +86,7 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
         <Input
           id="type"
           value={card.type}
-          onChange={(e) => onChange('type', e.target.value)}
+          onChange={(e) => onChange("type", e.target.value)}
           placeholder="e.g. Creature — Elf, Instant, Sorcery"
         />
       </div>
@@ -61,7 +95,7 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
         <Label>Card Color</Label>
         <RadioGroup
           value={card.color}
-          onValueChange={(value) => onChange('color', value)}
+          onValueChange={(value) => onChange("color", value)}
           className="flex flex-wrap gap-4"
         >
           <div className="flex items-center space-x-2">
@@ -132,10 +166,7 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
 
       <div className="space-y-2">
         <Label htmlFor="texture">Card Texture</Label>
-        <Select
-          value={card.texture}
-          onValueChange={(value) => onChange('texture', value)}
-        >
+        <Select value={card.texture} onValueChange={(value) => onChange("texture", value)}>
           <SelectTrigger>
             <SelectValue placeholder="Select texture" />
           </SelectTrigger>
@@ -153,9 +184,7 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
         <Label>Card Layout</Label>
         <RadioGroup
           value={card.layout}
-          onValueChange={(value) =>
-            onChange('layout', value as 'standard' | 'text-heavy' | 'utility')
-          }
+          onValueChange={(value) => onChange("layout", value as "standard" | "text-heavy" | "utility")}
           className="flex flex-col gap-2"
         >
           <div className="flex items-center space-x-2">
@@ -176,11 +205,9 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
           </div>
         </RadioGroup>
         <p className="text-sm text-muted-foreground">
-          {card.layout === 'standard' && 'Large image with standard text space'}
-          {card.layout === 'text-heavy' &&
-            'Smaller image with more space for rules text'}
-          {card.layout === 'utility' &&
-            'Compact card with only name and image - perfect for tokens'}
+          {card.layout === "standard" && "Large image with standard text space"}
+          {card.layout === "text-heavy" && "Smaller image with more space for rules text"}
+          {card.layout === "utility" && "Compact card with only name and image - perfect for tokens"}
         </p>
       </div>
 
@@ -189,13 +216,12 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
         <Textarea
           id="rulesText"
           value={card.rulesText}
-          onChange={(e) => onChange('rulesText', e.target.value)}
+          onChange={(e) => onChange("rulesText", e.target.value)}
           placeholder="Enter card rules text (Markdown supported)"
           rows={4}
         />
         <p className="text-xs text-muted-foreground">
-          Supports Markdown: **bold**, *italic*, ~~strikethrough~~, `code`, and
-          line breaks
+          Supports Markdown: **bold**, *italic*, ~~strikethrough~~, `code`, and line breaks
         </p>
       </div>
 
@@ -204,7 +230,7 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
         <Textarea
           id="flavorText"
           value={card.flavorText}
-          onChange={(e) => onChange('flavorText', e.target.value)}
+          onChange={(e) => onChange("flavorText", e.target.value)}
           placeholder="Enter flavor text"
           rows={2}
         />
@@ -215,31 +241,30 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
         <div className="flex items-center gap-4">
           <Label
             htmlFor="image-upload"
-            className="cursor-pointer flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-4 w-full hover:border-gray-400 transition-colors"
+            className={`cursor-pointer flex items-center justify-center border-2 border-dashed rounded-lg p-6 w-full transition-all duration-200 ${
+              isDragOver ? "border-blue-500 bg-blue-50 dark:bg-blue-950/20" : "border-gray-300 hover:border-gray-400"
+            }`}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
           >
             <div className="flex flex-col items-center space-y-2">
-              <Upload className="h-6 w-6" />
-              <span className="text-sm text-muted-foreground">
-                {imageFile ? imageFile.name : 'Upload image'}
-              </span>
+              <Upload className={`h-8 w-8 ${isDragOver ? "text-blue-500" : "text-gray-400"}`} />
+              <div className="text-center">
+                <span className={`text-sm font-medium ${isDragOver ? "text-blue-600" : "text-gray-700"}`}>
+                  {imageFile ? imageFile.name : isDragOver ? "Drop image here" : "Click to upload or drag & drop"}
+                </span>
+                <p className="text-xs text-muted-foreground mt-1">PNG, JPG, GIF up to 10MB</p>
+              </div>
             </div>
-            <Input
-              id="image-upload"
-              type="file"
-              accept="image/*"
-              onChange={handleFileChange}
-              className="hidden"
-            />
+            <Input id="image-upload" type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
           </Label>
         </div>
       </div>
 
       <div className="space-y-2">
         <Label htmlFor="font">Font Style</Label>
-        <Select
-          value={card.font}
-          onValueChange={(value) => onChange('font', value)}
-        >
+        <Select value={card.font} onValueChange={(value) => onChange("font", value)}>
           <SelectTrigger>
             <SelectValue placeholder="Select font" />
           </SelectTrigger>
@@ -250,5 +275,5 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
         </Select>
       </div>
     </div>
-  );
+  )
 }
