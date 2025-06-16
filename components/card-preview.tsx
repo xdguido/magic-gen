@@ -570,7 +570,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                 <div className="pt-1 mt-1"></div>
                 {card.flavorText && (
                   <div
-                    className={`${fontStyle} text-[9px] z-20 italic text-gray-700`}
+                    className={`${fontStyle} text-[9px] leading-tight z-20 italic text-gray-700`}
                   >
                     {card.flavorText}
                   </div>
@@ -651,7 +651,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                 </div>
               )}
               <div
-                className={`${fontStyle} z-20 text-[11px] card-text`}
+                className={`${fontStyle} z-20 text-[11px] leading-tight card-text`}
                 dangerouslySetInnerHTML={{
                   __html: parseMarkdown(card.rulesText),
                 }}
@@ -659,7 +659,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
               <div className="pt-1 mt-1"></div>
               {card.flavorText && (
                 <div
-                  className={`${fontStyle} text-[11px] z-20 italic text-gray-700`}
+                  className={`${fontStyle} text-[11px] leading-tight z-20 italic text-gray-700`}
                 >
                   {card.flavorText}
                 </div>
