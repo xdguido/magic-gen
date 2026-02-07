@@ -226,7 +226,12 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
           onValueChange={(value) =>
             onChange(
               'layout',
-              value as 'standard' | 'text-heavy' | 'utility' | 'simple'
+              value as
+                | 'standard'
+                | 'text-heavy'
+                | 'utility'
+                | 'simple'
+                | 'text-only'
             )
           }
           className="flex flex-col gap-2"
@@ -248,6 +253,10 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
             <Label htmlFor="simple">Simple Layout</Label>
           </div>
           <div className="flex items-center space-x-2">
+            <RadioGroupItem value="text-only" id="text-only" />
+            <Label htmlFor="text-only">Text-Only Layout</Label>
+          </div>
+          <div className="flex items-center space-x-2">
             <RadioGroupItem value="back" id="back" />
             <Label htmlFor="back">Card Back</Label>
           </div>
@@ -260,6 +269,8 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
             'Compact card with only title and image - perfect for tokens'}
           {card.layout === 'simple' &&
             'Standard size card with full art and title'}
+          {card.layout === 'text-only' &&
+            'Card with title, rules and flavor text but no image'}
         </p>
       </div>
 

@@ -563,6 +563,83 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
       );
     }
 
+    // Text-only layout - no image, just title, rules, and flavor
+    if (card.layout === 'text-only') {
+      return (
+        <div>
+          <div ref={ref} className="bg-stone-950">
+            <div
+              className={`w-[271px] h-[406px] rounded-[16px] box-content flex flex-col gap-2 overflow-hidden border-[12px] border-stone-950 ${styles.textColor} relative`}
+            >
+              {/* Single texture background with color tint for entire card */}
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src={texture.src || '/placeholder.svg'}
+                  alt="Card texture"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+                <div
+                  className={`absolute inset-0 ${styles.tint} ${styles.opacity} mix-blend-multiply`}
+                ></div>
+              </div>
+
+              {/* Card Title with margin */}
+              <div className="mx-2 mt-2 relative z-10">
+                <h3
+                  className={`${fontStyle} font-bold text-md ${styles.titleBg} box-content px-3 py-0.5 rounded border-4 ${styles.border}`}
+                >
+                  {card.title}
+                </h3>
+              </div>
+
+              {/* Rules Text with margin - Expanded to fill space */}
+              <div
+                className={`mx-2 mb-2 text-xs flex-1 overflow-y-hidden relative z-10 bg-white bg-opacity-80 p-3 rounded border-4 ${styles.border} `}
+              >
+                {texture.watermark && (
+                  <div className="absolute m-2 inset-0">
+                    <Image
+                      src={texture.watermark || '/placeholder.svg'}
+                      alt="Card watermark"
+                      fill
+                      className="object-contain opacity-5"
+                      priority
+                    />
+                  </div>
+                )}
+                <div
+                  className={`${fontStyle} z-20 text-[11px] leading-tight card-text`}
+                  dangerouslySetInnerHTML={{
+                    __html: parseMarkdown(card.rulesText),
+                  }}
+                />
+                <div className="pt-1 mt-1"></div>
+                {card.flavorText && (
+                  <div
+                    className={`${fontStyle} text-[11px] leading-tight z-20 italic text-gray-700`}
+                  >
+                    {card.flavorText}
+                  </div>
+                )}
+                {/* Card Type with margin - only show if type exists */}
+                {card.type && card.type.trim() && (
+                  <div className="absolute bottom-0 right-0 z-10">
+                    <span
+                      className={`${fontStyle} text-[8px] px-3 py-0 inline-block`}
+                    >
+                      {card.type}
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     // Text-heavy layout
     if (card.layout === 'text-heavy') {
       return (
