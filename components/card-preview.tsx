@@ -464,7 +464,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
       return (
         <div ref={ref} className="bg-stone-950">
           <div
-            className={`w-[205px] flex flex-col box-content gap-2 rounded-[14px] overflow-hidden border-8 border-stone-950 ${styles.textColor} relative `}
+            className={`w-[205px] h-[290px] flex flex-col box-content gap-2 rounded-[14px] overflow-hidden border-8 border-stone-950 ${styles.textColor} relative `}
           >
             {/* Single texture background with color tint for entire card */}
             <div className="absolute inset-0 z-0">
@@ -510,6 +510,54 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                 </span>
               </div>
             )}
+          </div>
+        </div>
+      );
+    }
+
+    // Simple layout - only title and image
+    if (card.layout === 'simple') {
+      return (
+        <div>
+          <div ref={ref} className="bg-stone-950">
+            <div
+              className={`w-[271px] h-[406px] box-content rounded-[16px] flex flex-col gap-2 overflow-hidden border-[12px] border-stone-950 ${styles.textColor} relative`}
+            >
+              {/* Single texture background with color tint for entire card */}
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src={texture.src || '/placeholder.svg'}
+                  alt="Card texture"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+                <div
+                  className={`absolute inset-0 ${styles.tint} ${styles.opacity} mix-blend-multiply`}
+                ></div>
+              </div>
+
+              {/* Card Title with margin */}
+              <div className="mx-2 mt-2 relative z-10">
+                <h3
+                  className={`${fontStyle} font-bold text-md ${styles.titleBg} box-content px-3 py-0.5 rounded border-4 ${styles.border}`}
+                >
+                  {card.title}
+                </h3>
+              </div>
+
+              {/* Card Image with margin - flex-1 to fill remaining space */}
+              <div
+                className={`flex-1 relative z-10 mx-2 mb-2 rounded border-4 box-content ${styles.border} overflow-hidden`}
+              >
+                <Image
+                  src={card.image || '/placeholder.svg'}
+                  alt={card.title}
+                  fill
+                  className={`object-cover ${imagePositionClass}`}
+                />
+              </div>
+            </div>
           </div>
         </div>
       );

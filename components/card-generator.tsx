@@ -27,7 +27,7 @@ export type CardData = {
   rulesText: string;
   flavorText: string;
   image: string;
-  layout: 'standard' | 'text-heavy' | 'utility' | 'back';
+  layout: 'standard' | 'text-heavy' | 'utility' | 'back' | 'simple';
   font: 'amarante' | 'eb-garamond';
   texture: 'default' | 'chernobyl' | 'lava' | 'rock' | 'oxido';
   imagePosition?:

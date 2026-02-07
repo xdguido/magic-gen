@@ -224,7 +224,10 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
         <RadioGroup
           value={card.layout}
           onValueChange={(value) =>
-            onChange('layout', value as 'standard' | 'text-heavy' | 'utility')
+            onChange(
+              'layout',
+              value as 'standard' | 'text-heavy' | 'utility' | 'simple'
+            )
           }
           className="flex flex-col gap-2"
         >
@@ -241,6 +244,10 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
             <Label htmlFor="utility">Utility Layout</Label>
           </div>
           <div className="flex items-center space-x-2">
+            <RadioGroupItem value="simple" id="simple" />
+            <Label htmlFor="simple">Simple Layout</Label>
+          </div>
+          <div className="flex items-center space-x-2">
             <RadioGroupItem value="back" id="back" />
             <Label htmlFor="back">Card Back</Label>
           </div>
@@ -251,6 +258,8 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
             'Smaller image with more space for rules text'}
           {card.layout === 'utility' &&
             'Compact card with only title and image - perfect for tokens'}
+          {card.layout === 'simple' &&
+            'Standard size card with full art and title'}
         </p>
       </div>
 
