@@ -21,7 +21,7 @@ import { CardGallery } from './card-gallery';
 import { CardPreview } from './card-preview';
 
 export type CardData = {
-  name: string;
+  title: string;
   type: string;
   color: string;
   rulesText: string;
@@ -45,7 +45,7 @@ export type CardData = {
 };
 
 const defaultCard: CardData = {
-  name: 'Mystic Elemental',
+  title: 'Mystic Elemental',
   type: '',
   color: 'blue',
   rulesText:
@@ -156,14 +156,14 @@ export function CardGenerator() {
       newSavedCards[existingIndex] = cardToSave;
       toast({
         title: 'Card Updated',
-        description: `"${card.name}" has been updated in your collection.`,
+        description: `"${card.title}" has been updated in your collection.`,
       });
     } else {
       // Add new card
       newSavedCards = [...savedCards, cardToSave];
       toast({
         title: 'Card Saved',
-        description: `"${card.name}" has been saved to your collection.`,
+        description: `"${card.title}" has been saved to your collection.`,
       });
     }
 
@@ -182,7 +182,7 @@ export function CardGenerator() {
 
         // Create download link
         const link = document.createElement('a');
-        link.download = `${card.name.replace(/\s+/g, '-').toLowerCase()}.png`;
+        link.download = `${card.title.replace(/\s+/g, '-').toLowerCase()}.png`;
         link.href = dataUrl;
         link.click();
 
@@ -218,7 +218,7 @@ export function CardGenerator() {
 
     toast({
       title: 'Card Loaded',
-      description: `"${cardToLoad.name}" has been loaded into the editor.`,
+      description: `"${cardToLoad.title}" has been loaded into the editor.`,
     });
   };
 
@@ -249,11 +249,49 @@ export function CardGenerator() {
       setCard(defaultCard);
     }
   };
+  const deleteCards = async (cardIds: string[]) => {
+    // Filter out cards to delete
+    const cardsToDelete = savedCards.filter(
+      (c) => c.id && cardIds.includes(c.id)
+    );
 
+    // Delete associated images from IndexedDB
+    for (const cardToDelete of cardsToDelete) {
+      if (cardToDelete.image && cardToDelete.image.startsWith('indexeddb://')) {
+        try {
+          await deleteImage(cardToDelete.image);
+          // Remove from imageUrls state
+          setImageUrls((prev) => {
+            const newUrls = { ...prev };
+            delete newUrls[cardToDelete.image];
+            return newUrls;
+          });
+        } catch (error) {
+          console.error('Error deleting image:', error);
+        }
+      }
+    }
+
+    const newSavedCards = savedCards.filter(
+      (c) => !c.id || !cardIds.includes(c.id)
+    );
+    setSavedCards(newSavedCards);
+    localStorage.setItem('mtg-cards', JSON.stringify(newSavedCards));
+
+    // If currently editing one of the deleted cards, reset
+    if (card.id && cardIds.includes(card.id)) {
+      setCard(defaultCard);
+    }
+
+    toast({
+      title: 'Cards Deleted',
+      description: `${cardIds.length} cards have been deleted from your collection.`,
+    });
+  };
   const duplicateCard = (cardToDuplicate: CardData) => {
     const duplicatedCard = {
       ...cardToDuplicate,
-      name: `${cardToDuplicate.name} (Copy)`,
+      title: `${cardToDuplicate.title} (Copy)`,
       id: Date.now().toString(),
       createdAt: new Date().toISOString(),
     };
@@ -264,7 +302,7 @@ export function CardGenerator() {
 
     toast({
       title: 'Card Duplicated',
-      description: `"${duplicatedCard.name}" has been added to your collection.`,
+      description: `"${duplicatedCard.title}" has been added to your collection.`,
     });
   };
 
@@ -352,6 +390,7 @@ export function CardGenerator() {
           cards={savedCardsWithResolvedImages}
           onLoadCard={loadCard}
           onDeleteCard={deleteCard}
+          onDeleteCards={deleteCards}
           onDuplicateCard={duplicateCard}
           onCreateNew={createNewCard}
         />

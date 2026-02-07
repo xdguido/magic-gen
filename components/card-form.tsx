@@ -108,12 +108,12 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
   return (
     <div className="space-y-6">
       <div className="space-y-2">
-        <Label htmlFor="name">Card Name</Label>
+        <Label htmlFor="title">Card Title</Label>
         <Input
-          id="name"
-          value={card.name}
-          onChange={(e) => onChange('name', e.target.value)}
-          placeholder="Enter card name"
+          id="title"
+          value={card.title}
+          onChange={(e) => onChange('title', e.target.value)}
+          placeholder="Enter card title"
         />
       </div>
 
@@ -250,7 +250,7 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
           {card.layout === 'text-heavy' &&
             'Smaller image with more space for rules text'}
           {card.layout === 'utility' &&
-            'Compact card with only name and image - perfect for tokens'}
+            'Compact card with only title and image - perfect for tokens'}
         </p>
       </div>
 

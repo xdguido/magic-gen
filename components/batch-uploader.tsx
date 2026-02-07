@@ -64,7 +64,7 @@ export function BatchUploader({ onBatchComplete }: BatchUploaderProps) {
 
           for (const row of rows) {
             try {
-              if (!row.name) continue;
+              if (!row.title) continue;
 
               let imageUrl =
                 row.image || '/placeholder.svg?height=400&width=400';
@@ -85,7 +85,7 @@ export function BatchUploader({ onBatchComplete }: BatchUploaderProps) {
               }
 
               const newCard: CardData = {
-                name: row.name,
+                title: row.title,
                 type: row.type || '',
                 color: row.color || 'white',
                 rulesText: row.rulesText || '',
@@ -187,7 +187,7 @@ export function BatchUploader({ onBatchComplete }: BatchUploaderProps) {
               onChange={(e) => setCsvFile(e.target.files?.[0] || null)}
             />
             <p className="text-xs text-muted-foreground">
-              Required headers: name. Optional: type, color, rulesText,
+              Required headers: title. Optional: type, color, rulesText,
               flavorText, imageFileName, imagePosition, layout, font, texture.
             </p>
           </div>
