@@ -1,103 +1,109 @@
-"use client"
+'use client';
 
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Upload } from "lucide-react"
-import type React from "react"
-import { useState, useCallback } from "react"
-import type { CardData } from "./card-generator"
-import { useImageStorage } from "@/hooks/use-image-storage"
-import { useToast } from "@/hooks/use-toast"
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { useImageStorage } from '@/hooks/use-image-storage';
+import { useToast } from '@/hooks/use-toast';
+import { Upload } from 'lucide-react';
+import type React from 'react';
+import { useCallback, useState } from 'react';
+import type { CardData } from './card-generator';
 
 interface CardFormProps {
-  card: CardData
-  onChange: (field: keyof CardData, value: string) => void
-  onImageUpload: (imageUrl: string) => void
+  card: CardData;
+  onChange: (field: keyof CardData, value: string) => void;
+  onImageUpload: (imageUrl: string) => void;
 }
 
 export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
-  const [imageFile, setImageFile] = useState<File | null>(null)
-  const [isDragOver, setIsDragOver] = useState(false)
-  const [isUploading, setIsUploading] = useState(false)
-  const { saveImage, isInitialized } = useImageStorage()
-  const { toast } = useToast()
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [isDragOver, setIsDragOver] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const { saveImage, isInitialized } = useImageStorage();
+  const { toast } = useToast();
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file && file.type.startsWith("image/")) {
-      await processFile(file)
+    const file = e.target.files?.[0];
+    if (file && file.type.startsWith('image/')) {
+      await processFile(file);
     }
-  }
+  };
 
   const processFile = async (file: File) => {
-    setIsUploading(true)
-    setImageFile(file)
+    setIsUploading(true);
+    setImageFile(file);
 
     try {
       if (isInitialized) {
         // Save to IndexedDB and get the IndexedDB URL
-        const indexedDBUrl = await saveImage(file)
-        onImageUpload(indexedDBUrl)
+        const indexedDBUrl = await saveImage(file);
+        onImageUpload(indexedDBUrl);
       } else {
         // Fallback to blob URL if IndexedDB is not ready
-        const imageUrl = URL.createObjectURL(file)
-        onImageUpload(imageUrl)
+        const imageUrl = URL.createObjectURL(file);
+        onImageUpload(imageUrl);
       }
     } catch (error) {
-      console.error("Error saving image:", error)
+      console.error('Error saving image:', error);
       toast({
-        title: "Image Upload Error",
-        description: "Failed to save image. Using temporary preview.",
-        variant: "destructive",
-      })
+        title: 'Image Upload Error',
+        description: 'Failed to save image. Using temporary preview.',
+        variant: 'destructive',
+      });
       // Fallback to blob URL
-      const imageUrl = URL.createObjectURL(file)
-      onImageUpload(imageUrl)
+      const imageUrl = URL.createObjectURL(file);
+      onImageUpload(imageUrl);
     } finally {
-      setIsUploading(false)
+      setIsUploading(false);
     }
-  }
+  };
 
   const handleFile = useCallback(
     async (file: File) => {
-      if (file && file.type.startsWith("image/")) {
-        await processFile(file)
+      if (file && file.type.startsWith('image/')) {
+        await processFile(file);
       }
     },
-    [isInitialized, saveImage, onImageUpload],
-  )
+    [isInitialized, saveImage, onImageUpload]
+  );
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    setIsDragOver(true)
-  }, [])
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragOver(true);
+  }, []);
 
   const handleDragLeave = useCallback((e: React.DragEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    setIsDragOver(false)
-  }, [])
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragOver(false);
+  }, []);
 
   const handleDrop = useCallback(
     async (e: React.DragEvent) => {
-      e.preventDefault()
-      e.stopPropagation()
-      setIsDragOver(false)
+      e.preventDefault();
+      e.stopPropagation();
+      setIsDragOver(false);
 
-      const files = Array.from(e.dataTransfer.files)
-      const imageFile = files.find((file) => file.type.startsWith("image/"))
+      const files = Array.from(e.dataTransfer.files);
+      const imageFile = files.find((file) => file.type.startsWith('image/'));
 
       if (imageFile) {
-        await handleFile(imageFile)
+        await handleFile(imageFile);
       }
     },
-    [handleFile],
-  )
+    [handleFile]
+  );
 
   return (
     <div className="space-y-6">
@@ -106,7 +112,7 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
         <Input
           id="name"
           value={card.name}
-          onChange={(e) => onChange("name", e.target.value)}
+          onChange={(e) => onChange('name', e.target.value)}
           placeholder="Enter card name"
         />
       </div>
@@ -116,7 +122,7 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
         <Input
           id="type"
           value={card.type}
-          onChange={(e) => onChange("type", e.target.value)}
+          onChange={(e) => onChange('type', e.target.value)}
           placeholder="e.g. Creature — Elf, Instant, Sorcery"
         />
       </div>
@@ -125,7 +131,7 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
         <Label>Card Color</Label>
         <RadioGroup
           value={card.color}
-          onValueChange={(value) => onChange("color", value)}
+          onValueChange={(value) => onChange('color', value)}
           className="flex flex-wrap gap-4"
         >
           <div className="flex items-center space-x-2">
@@ -196,7 +202,10 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
 
       <div className="space-y-2">
         <Label htmlFor="texture">Card Texture</Label>
-        <Select value={card.texture} onValueChange={(value) => onChange("texture", value)}>
+        <Select
+          value={card.texture}
+          onValueChange={(value) => onChange('texture', value)}
+        >
           <SelectTrigger>
             <SelectValue placeholder="Select texture" />
           </SelectTrigger>
@@ -214,7 +223,9 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
         <Label>Card Layout</Label>
         <RadioGroup
           value={card.layout}
-          onValueChange={(value) => onChange("layout", value as "standard" | "text-heavy" | "utility")}
+          onValueChange={(value) =>
+            onChange('layout', value as 'standard' | 'text-heavy' | 'utility')
+          }
           className="flex flex-col gap-2"
         >
           <div className="flex items-center space-x-2">
@@ -235,9 +246,11 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
           </div>
         </RadioGroup>
         <p className="text-sm text-muted-foreground">
-          {card.layout === "standard" && "Large image with standard text space"}
-          {card.layout === "text-heavy" && "Smaller image with more space for rules text"}
-          {card.layout === "utility" && "Compact card with only name and image - perfect for tokens"}
+          {card.layout === 'standard' && 'Large image with standard text space'}
+          {card.layout === 'text-heavy' &&
+            'Smaller image with more space for rules text'}
+          {card.layout === 'utility' &&
+            'Compact card with only name and image - perfect for tokens'}
         </p>
       </div>
 
@@ -246,12 +259,13 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
         <Textarea
           id="rulesText"
           value={card.rulesText}
-          onChange={(e) => onChange("rulesText", e.target.value)}
+          onChange={(e) => onChange('rulesText', e.target.value)}
           placeholder="Enter card rules text (Markdown supported)"
           rows={4}
         />
         <p className="text-xs text-muted-foreground">
-          Supports Markdown: **bold**, *italic*, ~~strikethrough~~, `code`, and line breaks
+          Supports Markdown: **bold**, *italic*, ~~strikethrough~~, `code`, and
+          line breaks
         </p>
       </div>
 
@@ -260,7 +274,7 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
         <Textarea
           id="flavorText"
           value={card.flavorText}
-          onChange={(e) => onChange("flavorText", e.target.value)}
+          onChange={(e) => onChange('flavorText', e.target.value)}
           placeholder="Enter flavor text"
           rows={2}
         />
@@ -272,27 +286,33 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
           <Label
             htmlFor="image-upload"
             className={`cursor-pointer flex items-center justify-center border-2 border-dashed rounded-lg p-6 w-full transition-all duration-200 ${
-              isDragOver ? "border-blue-500 bg-blue-50 dark:bg-blue-950/20" : "border-gray-300 hover:border-gray-400"
-            } ${isUploading ? "opacity-50 cursor-not-allowed" : ""}`}
+              isDragOver
+                ? 'border-blue-500 bg-blue-50 dark:bg-blue-950/20'
+                : 'border-gray-300 hover:border-gray-400'
+            } ${isUploading ? 'opacity-50 cursor-not-allowed' : ''}`}
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
           >
             <div className="flex flex-col items-center space-y-2">
               <Upload
-                className={`h-8 w-8 ${isDragOver ? "text-blue-500" : "text-gray-400"} ${isUploading ? "animate-pulse" : ""}`}
+                className={`h-8 w-8 ${isDragOver ? 'text-blue-500' : 'text-gray-400'} ${isUploading ? 'animate-pulse' : ''}`}
               />
               <div className="text-center">
-                <span className={`text-sm font-medium ${isDragOver ? "text-blue-600" : "text-gray-700"}`}>
+                <span
+                  className={`text-sm font-medium ${isDragOver ? 'text-blue-600' : 'text-gray-700'}`}
+                >
                   {isUploading
-                    ? "Saving image..."
+                    ? 'Saving image...'
                     : imageFile
                       ? imageFile.name
                       : isDragOver
-                        ? "Drop image here"
-                        : "Click to upload or drag & drop"}
+                        ? 'Drop image here'
+                        : 'Click to upload or drag & drop'}
                 </span>
-                <p className="text-xs text-muted-foreground mt-1">PNG, JPG, GIF up to 10MB</p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  PNG, JPG, GIF up to 10MB
+                </p>
               </div>
             </div>
             <Input
@@ -308,8 +328,34 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
       </div>
 
       <div className="space-y-2">
+        <Label htmlFor="imagePosition">Image Position</Label>
+        <Select
+          value={card.imagePosition || 'object-center'}
+          onValueChange={(value) => onChange('imagePosition', value)}
+        >
+          <SelectTrigger>
+            <SelectValue placeholder="Position" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="object-top-left">Top Left</SelectItem>
+            <SelectItem value="object-top">Top</SelectItem>
+            <SelectItem value="object-top-right">Top Right</SelectItem>
+            <SelectItem value="object-left">Left</SelectItem>
+            <SelectItem value="object-center">Center</SelectItem>
+            <SelectItem value="object-right">Right</SelectItem>
+            <SelectItem value="object-bottom-left">Bottom Left</SelectItem>
+            <SelectItem value="object-bottom">Bottom</SelectItem>
+            <SelectItem value="object-bottom-right">Bottom Right</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="space-y-2">
         <Label htmlFor="font">Font Style</Label>
-        <Select value={card.font} onValueChange={(value) => onChange("font", value)}>
+        <Select
+          value={card.font}
+          onValueChange={(value) => onChange('font', value)}
+        >
           <SelectTrigger>
             <SelectValue placeholder="Select font" />
           </SelectTrigger>
@@ -320,5 +366,5 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
         </Select>
       </div>
     </div>
-  )
+  );
 }

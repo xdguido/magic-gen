@@ -395,6 +395,21 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
     const texture = textureStyles[card.texture] || textureStyles.default;
     const styles = getColorStyles(card.texture, card.color);
 
+    const imagePositionMap: Record<string, string> = {
+      'object-top-left': 'object-left-top',
+      'object-top': 'object-top',
+      'object-top-right': 'object-right-top',
+      'object-left': 'object-left',
+      'object-center': 'object-center',
+      'object-right': 'object-right',
+      'object-bottom-left': 'object-left-bottom',
+      'object-bottom': 'object-bottom',
+      'object-bottom-right': 'object-right-bottom',
+    };
+    const imagePositionClass =
+      imagePositionMap[card.imagePosition || 'object-center'] ||
+      'object-center';
+
     const fontStyle = (() => {
       switch (card.font) {
         case 'eb-garamond':
@@ -482,7 +497,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                 src={card.image || '/placeholder.svg'}
                 alt={card.name}
                 fill
-                className="object-cover"
+                className={`object-cover ${imagePositionClass}`}
                 priority
               />
             </div>
@@ -534,13 +549,13 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
 
               {/* Card Image with margin */}
               <div
-                className={`h-[140px] relative box-content z-10 mx-2 rounded border-4 ${styles.border}  overflow-hidden`}
+                className={`h-[140px] relative box-content z-10 mx-2 rounded border-4 bg-white ${styles.border}  overflow-hidden`}
               >
                 <Image
                   src={card.image || '/placeholder.svg'}
                   alt={card.name}
                   fill
-                  className="object-cover"
+                  className={`object-cover ${imagePositionClass}`}
                   priority
                 />
               </div>
@@ -630,7 +645,7 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                 src={card.image || '/placeholder.svg'}
                 alt={card.name}
                 fill
-                className="object-cover"
+                className={`object-cover ${imagePositionClass}`}
               />
             </div>
 
