@@ -131,7 +131,7 @@ export function CardGallery({
 
             // Remove header
             const base64Data = dataUrl.replace(/^data:image\/png;base64,/, '');
-            const fileName = `${card.title.replace(/\s+/g, '-').toLowerCase()}-${card.id.substr(0, 4)}.png`;
+            const fileName = `${card.title.replace(/\s+/g, '-').toLowerCase()}-${card.id}.png`;
             folder?.file(fileName, base64Data, { base64: true });
             count++;
           } catch (e) {
