@@ -421,6 +421,31 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
       }
     })();
 
+    // Font size scale multiplier function
+    const getFontSizeScale = (layout: string, fontSize: string = 'normal') => {
+      const baseScales: Record<string, number> = {
+        normal: 1,
+        large: 1.3,
+        xlarge: 1.6,
+      };
+      const scale = baseScales[fontSize] || 1;
+
+      // Return size mapping per layout for rules/flavor text
+      if (layout === 'text-heavy' || layout === 'text-only') {
+        return {
+          rules: Math.round(9 * scale),
+          flavor: Math.round(9 * scale),
+        };
+      }
+      // Standard, simple, utility, back
+      return {
+        rules: Math.round(11 * scale),
+        flavor: Math.round(11 * scale),
+      };
+    };
+
+    const fontSizes = getFontSizeScale(card.layout, card.fontSize || 'normal');
+
     if (card.layout === 'back') {
       // Back layout - just show the back image
       return (
@@ -610,7 +635,8 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                   </div>
                 )}
                 <div
-                  className={`${fontStyle} z-20 text-[11px] leading-tight card-text`}
+                  className={`${fontStyle} z-20 leading-tight card-text`}
+                  style={{ fontSize: `${fontSizes.rules}px` }}
                   dangerouslySetInnerHTML={{
                     __html: parseMarkdown(card.rulesText),
                   }}
@@ -618,7 +644,8 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                 <div className="pt-1 mt-1"></div>
                 {card.flavorText && (
                   <div
-                    className={`${fontStyle} text-[11px] leading-tight z-20 italic text-gray-700`}
+                    className={`${fontStyle} leading-tight z-20 italic text-gray-700`}
+                    style={{ fontSize: `${fontSizes.flavor}px` }}
                   >
                     {card.flavorText}
                   </div>
@@ -701,7 +728,8 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                   </div>
                 )}
                 <div
-                  className={`${fontStyle} z-20 text-[9px] leading-tight card-text`}
+                  className={`${fontStyle} z-20 leading-tight card-text`}
+                  style={{ fontSize: `${fontSizes.rules}px` }}
                   dangerouslySetInnerHTML={{
                     __html: parseMarkdown(card.rulesText),
                   }}
@@ -709,7 +737,8 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                 <div className="pt-1 mt-1"></div>
                 {card.flavorText && (
                   <div
-                    className={`${fontStyle} text-[9px] leading-tight z-20 italic text-gray-700`}
+                    className={`${fontStyle} leading-tight z-20 italic text-gray-700`}
+                    style={{ fontSize: `${fontSizes.flavor}px` }}
                   >
                     {card.flavorText}
                   </div>
@@ -790,7 +819,8 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
                 </div>
               )}
               <div
-                className={`${fontStyle} z-20 text-[11px] leading-tight card-text`}
+                className={`${fontStyle} z-20 leading-tight card-text`}
+                style={{ fontSize: `${fontSizes.rules}px` }}
                 dangerouslySetInnerHTML={{
                   __html: parseMarkdown(card.rulesText),
                 }}
@@ -798,7 +828,8 @@ export const CardPreview = forwardRef<HTMLDivElement, CardPreviewProps>(
               <div className="pt-1 mt-1"></div>
               {card.flavorText && (
                 <div
-                  className={`${fontStyle} text-[11px] leading-tight z-20 italic text-gray-700`}
+                  className={`${fontStyle} leading-tight z-20 italic text-gray-700`}
+                  style={{ fontSize: `${fontSizes.flavor}px` }}
                 >
                   {card.flavorText}
                 </div>

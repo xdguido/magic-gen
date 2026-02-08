@@ -385,6 +385,23 @@ export function CardForm({ card, onChange, onImageUpload }: CardFormProps) {
           </SelectContent>
         </Select>
       </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="fontSize">Text Size</Label>
+        <Select
+          value={card.fontSize || 'normal'}
+          onValueChange={(value) => onChange('fontSize', value)}
+        >
+          <SelectTrigger>
+            <SelectValue placeholder="Select text size" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="normal">Normal (Default)</SelectItem>
+            <SelectItem value="large">Large</SelectItem>
+            <SelectItem value="xlarge">Extra Large</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
     </div>
   );
 }

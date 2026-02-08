@@ -35,6 +35,7 @@ export type CardData = {
     | 'simple'
     | 'text-only';
   font: 'amarante' | 'eb-garamond';
+  fontSize?: 'normal' | 'large' | 'xlarge';
   texture: 'default' | 'chernobyl' | 'lava' | 'rock' | 'oxido';
   imagePosition?:
     | 'object-top-left'
@@ -60,6 +61,7 @@ const defaultCard: CardData = {
   image: '/placeholder.svg?height=400&width=400',
   layout: 'standard',
   font: 'eb-garamond',
+  fontSize: 'normal',
   texture: 'rock',
   imagePosition: 'object-center',
 };
