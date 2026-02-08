@@ -184,6 +184,12 @@ export function CardGallery({
         return 'bg-green-100 text-green-800';
       case 'utility':
         return 'bg-purple-100 text-purple-800';
+      case 'simple':
+        return 'bg-orange-100 text-orange-800';
+      case 'text-only':
+        return 'bg-red-100 text-red-800';
+      case 'back':
+        return 'bg-gray-100 text-gray-800';
       default:
         return 'bg-gray-100 text-gray-800';
     }
@@ -248,6 +254,9 @@ export function CardGallery({
                 <SelectItem value="standard">Standard</SelectItem>
                 <SelectItem value="text-heavy">Text-Heavy</SelectItem>
                 <SelectItem value="utility">Utility</SelectItem>
+                <SelectItem value="simple">Simple</SelectItem>
+                <SelectItem value="text-only">Text-Only</SelectItem>
+                <SelectItem value="back">Back</SelectItem>
               </SelectContent>
             </Select>
           </div>

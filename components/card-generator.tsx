@@ -151,6 +151,8 @@ export function CardGenerator() {
       ...card,
       id: card.id || Date.now().toString(),
       createdAt: card.createdAt || new Date().toISOString(),
+      // Normalize layout to avoid accidental whitespace/casing issues
+      layout: (card.layout || 'standard').toString().trim(),
     };
 
     const existingIndex = savedCards.findIndex((c) => c.id === cardToSave.id);

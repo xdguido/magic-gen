@@ -84,6 +84,36 @@ export function BatchUploader({ onBatchComplete }: BatchUploaderProps) {
                 imageUrl = await saveImage(imageFile);
               }
 
+              // Normalize incoming CSV values
+              const normalize = (v: any) =>
+                (v || '').toString().trim().toLowerCase();
+
+              const incomingLayout = normalize(row.layout);
+              const allowedLayouts = [
+                'standard',
+                'text-heavy',
+                'utility',
+                'back',
+                'simple',
+                'text-only',
+              ];
+
+              const incomingImagePos = normalize(row.imagePosition);
+              const allowedImagePositions = [
+                'object-top-left',
+                'object-top',
+                'object-top-right',
+                'object-left',
+                'object-center',
+                'object-right',
+                'object-bottom-left',
+                'object-bottom',
+                'object-bottom-right',
+              ];
+
+              const incomingTexture = normalize(row.texture);
+              const allowedTextures = ['chernobyl', 'lava', 'rock', 'oxido'];
+
               const newCard: CardData = {
                 title: row.title,
                 type: row.type || '',
@@ -91,32 +121,15 @@ export function BatchUploader({ onBatchComplete }: BatchUploaderProps) {
                 rulesText: row.rulesText || '',
                 flavorText: row.flavorText || '',
                 image: imageUrl,
-                layout:
-                  row.layout === 'text-heavy' ||
-                  row.layout === 'utility' ||
-                  row.layout === 'back'
-                    ? row.layout
-                    : 'standard',
-                font: row.font === 'amarante' ? 'amarante' : 'eb-garamond',
-                imagePosition: (
-                  [
-                    'object-top-left',
-                    'object-top',
-                    'object-top-right',
-                    'object-left',
-                    'object-center',
-                    'object-right',
-                    'object-bottom-left',
-                    'object-bottom',
-                    'object-bottom-right',
-                  ] as const
-                ).includes(row.imagePosition)
-                  ? row.imagePosition
+                layout: allowedLayouts.includes(incomingLayout)
+                  ? (incomingLayout as CardData['layout'])
+                  : 'standard',
+                font: normalize(row.font) === 'amarante' ? 'amarante' : 'eb-garamond',
+                imagePosition: allowedImagePositions.includes(incomingImagePos)
+                  ? (incomingImagePos as CardData['imagePosition'])
                   : 'object-center',
-                texture: (
-                  ['chernobyl', 'lava', 'rock', 'oxido'] as const
-                ).includes(row.texture)
-                  ? row.texture
+                texture: allowedTextures.includes(incomingTexture)
+                  ? (incomingTexture as CardData['texture'])
                   : 'default',
                 id:
                   Date.now().toString() + Math.random().toString().substr(2, 9),
